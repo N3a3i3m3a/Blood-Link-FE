@@ -5,8 +5,8 @@ import { FaAmbulance } from "react-icons/fa";
 
 const Services = () => {
   return (
-    <div className="w-full py-20 px-7 text-gray-700">
-      <h2 className="text-3xl px-60 text-gray-500 font-semibold mb-10">Services</h2>
+    <div className=" bg-gradient-to-b from-red-200 to-white mt-20 w-full py-20 px-7 text-gray-700">
+      <h2 className="text-3xl px-60 text-gray-500 font-semibold mb-10 text-center">Services</h2>
       <div className="flex gap-7 justify-between">
         <div className="border border-red-500 rounded-lg p-5 ">
           <div className="services1">

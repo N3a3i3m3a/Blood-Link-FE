@@ -1,80 +1,57 @@
 import React from 'react';
+import process1 from '/process1.png';
+import contactimg2 from '/contactimg2.jpg';
+import Donate from '/Donate.webp';
+import Slogo from '/Slogo.jpg';
 
-const Process = () => {
+function Process() {
+  const portfolios = [
+    {
+      id: 1,
+      src: process1,
+      description: "1. Registration; The Donors create accounts and Hospitals get credentials to use for accessing aour services",
+      
+    },
+    {
+      id: 2,
+      src: contactimg2,
+      description: "2. Request by user; Donors request for donating immediately or book appointment according to their avalability and hospital in need of blood request for them",
+    },
+    {
+      id: 3,
+      src: Donate,
+      description: "3. Linking users, RBC pass through users requests and link donors with hospitals accordingly due to location, time and so on. Thereafter users receive messages from RDB for further processes.",
+    },
+    {
+      id: 4,
+      src: Slogo,
+      description: "4. Fulfilment of request; Donors go to their respective hospitlas and donate as well as hospitals receive the requested blood banks ",
+    },
+  ];
+
   return (
-    <div className="w-full h-[80%] text-black " style={{ backgroundImage: `url('')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-      <h2 className="text-3xl px-40 text-gray-500 font-semibold mb-3" >Donation Process</h2>
-      <div className=''>
-      <div className="flex flex-row ">
-        <div className="flex flex-row justify-between w-[40%] border text-black border-gray-300 rounded-lg p-4" >
-          <div>
-            <img src='/process1.png' className=''/>
-          </div>
-          <div className="services1">
-            <div className="text1">
-              <h4 className='text-2xl font-semibold'>1.Registration</h4>
-              <p>
-                Someone who needs to donate blood is facilitated to be linked to nearby hospital.
-              </p>
-              <button className="">
-                <a href="/" className="p-2 rounded-2xl">Click Here</a>
-              </button>
+    <section className='mt-32 text-gray-500'>
+     <p className='text-gray-500 text-center text-4xl font-semibold'> Process</p>
+     <p className=' text-xl'>Here are blood link's process</p>
+    <div className="w-full h-[80%]">
+      
+      <div className="p-4 mx-auto flex flex-col justify-center w-full">
+        <div className="grid sm:grid-cols-2 md:grid-cols-2 gap-8 px-12 sm:px-0">
+          {portfolios.map(({ id, src, description }) => (
+            <div key={id} className="shadow-md shadow-gray-600 rounded-lg flex flex-row gap-5">
+              <div>
+              <img src={src} alt="" className="rounded-md duration-200 hover:scale-105 h-40 w-80 object-cover" />
+              </div>
+              <div>
+              <p className='text-gray-700'>{description}</p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className=" w-[40%] border border-gray-300 rounded-lg p-4 " >
-        <div>
-            <img src='/contactimg.avif' className=''/>
-          </div>
-          <div className="services2">
-            <br />
-            <div className="text2">
-              <h4 className='text-2xl font-semibold'>2. Book,request for donating immediately, or Blood requesting</h4>
-              <p>
-                You can simply book blood donation time according to your availability.
-              </p>
-              <button className="px-3 w-full">
-                <a href="" className="p-2 rounded-2xl">Click Here</a>
-              </button>
-            </div>
-          </div>
-         </div>
-        </div>
-        <div className='flex flex-row'>
-         <div className=" w-[40%] border border-gray-300 rounded-lg p-4 " >
-          <div className="services3">
-            <br />
-            <div className="text3">
-              <h4 className='text-2xl font-semibold'>3. Linking blood donors and blood seekers </h4>
-              <p>
-                Health institutions in need of blood can be linked with blood donors.
-              </p>
-              <button className="">
-                <a href="/" className="p-2 rounded-2xl">
-                  Click Here
-                </a>
-              </button>
-            </div>
-          </div>
-         </div>
-         <div className=" w-[40%] border border-gray-300 rounded-lg p-4" >
-          <div className="services2">
-            <br />
-            <div className="text2">
-              <h4 className='text-2xl font-semibold'>4. Donating or get blood</h4>
-              <p>
-                You can simply book blood donation time according to your availability.
-              </p>
-              <button className="px-3 w-full">
-                <a href="" className="p-2 rounded-2xl">Click Here</a>
-              </button>
-            </div>
-          </div>
-         </div>
+          ))}
         </div>
       </div>
     </div>
+    </section>
   );
-};
+}
 
 export default Process;
