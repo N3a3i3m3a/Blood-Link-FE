@@ -7,7 +7,7 @@ import { IoCallSharp } from "react-icons/io5";
 
 const Contact = () => {
   return (
-    <div className=" bg bg-red-700 w-full px-7 text-gray-700 h-screen">
+    <div className="mt-32  bg bg-red-700 w-full px-7 text-gray-700 h-screen">
       <h2 className="text-3xl text-gray-200 ml-[40%] my-7 font-semibold">Contact Us</h2>
       <div className="flex flex-wrap justify-between items-center">
         {/* Left Section - Image */}
