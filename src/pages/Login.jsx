@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className='w-full'>
       <h1 className="text-2xl text-white font-bold">SIGN IN</h1>
       <form className="mt-5 flex flex-col gap-5" onSubmit={handleLogin}>
         <div>
