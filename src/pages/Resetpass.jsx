@@ -3,7 +3,7 @@ import React from 'react'
 const Resetpass = () => {
   return (
     
-    <div>           
+    <div className='w-full'>           
     <h1 className="text-2xl text-white font-bold">RESET ACCOUNT PASSWORD</h1>
     <h3></h3>
     <div className="mt-5 flex flex-col gap-5">

@@ -8,9 +8,9 @@ const NavBar = () => {
       <div className='flex'>
         <img className='h-20 ml-7' src='/Logo.PNG'alt="Logo" />
       </div>
-      <div className="flex flex-row justify-around w-[60%] font-semibold">
+      <div className="flex flex-row justify-around w-[60%] font-semibold ">
         <div>
-          <NavLink to="/Home" className="">Home</NavLink>
+          <NavLink to="/" className="">Home</NavLink>
         </div>
         <div>
           <NavLink to="/About" className="">About us</NavLink>
@@ -25,7 +25,7 @@ const NavBar = () => {
           <NavLink to="/Contact" className="">Contact us</NavLink>
         </div>
         <div>
-          <NavLink to="/Login" className="mx-24">Login</NavLink>
+          <NavLink to="/Login" className="mx-24 text-red-500 font-bold">Login</NavLink>
         </div>
       </div>
     </section>
