@@ -1,13 +1,25 @@
 import React from 'react';
 import Footer from './Footer'
+import { FaLocationDot } from "react-icons/fa6";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { IoCallSharp } from "react-icons/io5";
+
+
 const Contact = () => {
   return (
-    <div className="max-w-screen-xl mx-auto mt-5 px-7 text-gray-700 h-screen">
-      <h2 className="text-3xl text-gray-500 ml-[40%] font-semibold">Contact Us</h2>
-      <div className="flex flex-wrap justify-between items-center">
+    <div className=" bg bg-white max-w-screen-xl mx-auto px-7 text-gray-700 h-screen">
+      <h2 className="text-3xl text-gray-500 ml-[40%] my-7 font-semibold">Contact Us</h2>
+      <div className="flex flex-wrap justify-between items-center bg-red-700">
         {/* Left Section - Image */}
         <div className="w-full md:w-1/2 mb-8 md:mb-0">
-          <img src="/contactimg.avif" alt="Contact Us" className="rounded-lg w-full" />
+        <p className='text-white text-2xl'>Contact informations</p>
+         
+        <p><FaLocationDot className='text-white text-2xl' />Kacyiru, Kigali</p>
+        <br/>
+        <p><MdOutlineMailOutline className='text-white text-2xl' />danb@gmail.com</p>
+        <br/>
+        <p><IoCallSharp className='text-white text-2xl' />+2507888888888</p>
+        <br/>
         </div>
         
         {/* Right Section - Form */}

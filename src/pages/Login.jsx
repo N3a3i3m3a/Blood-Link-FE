@@ -52,7 +52,7 @@ const Login = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          {emailError && <p className="text-red-500">{emailError}</p>}
+          {emailError && <p className="text-blue-700">{emailError}</p>}
         </div>
         <div>
           <input
@@ -63,7 +63,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {passwordError && <p className="text-red-500">{passwordError}</p>}
+          {passwordError && <p className="text-blue-700">{passwordError}</p>}
         </div>
         <div>
           <button className="bg-blue-700 px-5 py-2 rounded-md text-white w-[80%] border border-blue-900">
