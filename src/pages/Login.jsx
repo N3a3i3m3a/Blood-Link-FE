@@ -48,7 +48,7 @@ const Login = () => {
             type="text"
             id="username"
             placeholder="Email"
-            className=" px-3 py-2 rounded-md w-[80%] border border-blue-700"
+            className=" px-3 py-2 rounded-md w-[80%] border border-red-700"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -59,22 +59,22 @@ const Login = () => {
             type="password"
             id="password"
             placeholder="Password"
-            className=" px-3 py-2 rounded-md border border-blue-700 w-[80%]"
+            className=" px-3 py-2 rounded-md border border-red-700 w-[80%]"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           {passwordError && <p className="text-blue-700">{passwordError}</p>}
         </div>
         <div>
-          <button className="bg-blue-700 px-5 py-2 rounded-md text-white w-[80%] border border-blue-900">
+          <button className="bg-red-700 px-5 py-2 rounded-md text-white w-[80%] border border-red-700">
             Sign In
           </button>
         </div>
       </form>
       <p className="mt-3">
-        Already have an account?<Link to='/SignUp'> <span className="text-white">Sign Up</span></Link>
+        Don't have account?<Link to='/SignUp'> <span className="text-red-700">Sign Up</span></Link>
         <br />
-        Forgot Password? <Link to='/Reset'><span className="text-white">Reset password</span></Link>
+        Forgot Password? <Link to='/Reset'><span className="text-red-700">Reset password</span></Link>
       </p>
     </div>
   );

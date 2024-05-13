@@ -14,7 +14,7 @@ const Resetpass = () => {
           id="password"
           placeholder="Enter new password"
           value=''
-          className=" px-3 py-2 rounded-md border border-blue-700 w-[80%]"
+          className=" px-3 py-2 rounded-md border border-red-700 w-[80%]"
         />
       </div>
       <div>
@@ -23,10 +23,10 @@ const Resetpass = () => {
           id=""
           placeholder="Confirm new password"
           value=''
-          className=" px-3 py-2 rounded-md border border-blue-700 w-[80%]"
+          className=" px-3 py-2 rounded-md border border-red-700 w-[80%]"
         />
       </div>
-        <button className="bg-blue-700 mx-9 py-2 rounded-md text-white w-[80%] border border-blue-700">Reset Password</button>
+        <button className="ml-[10%] bg-red-700 mx-9 py-2 rounded-md text-white w-[80%] border">Reset Password</button>
       </div>
     </div>
   )  

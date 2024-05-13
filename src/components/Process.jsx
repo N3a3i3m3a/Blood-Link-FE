@@ -32,18 +32,18 @@ function Process() {
   return (
     <section className='mt-32 text-gray-500'>
      <p className='text-gray-500 text-center text-4xl font-semibold'> Process</p>
-     <p className=' text-xl'>Here are blood link's process</p>
+     <p className=' text-xl px-12 text-black'>Here are blood link's process</p>
     <div className="w-full h-[80%]">
       
       <div className="p-4 mx-auto flex flex-col justify-center w-full">
         <div className="grid sm:grid-cols-2 md:grid-cols-2 gap-8 px-12 sm:px-0">
           {portfolios.map(({ id, src, description }) => (
-            <div key={id} className="shadow-md shadow-gray-600 rounded-lg flex flex-row gap-5">
+            <div key={id} className="shadow-md shadow-gray-600 rounded-lg flex flex-col items-center justify-center gap-5">
               <div>
-              <img src={src} alt="" className="rounded-md duration-200 hover:scale-105 h-40 w-80 object-cover" />
+                <img src={src} alt="" className="rounded-md duration-200 hover:scale-105 max-h-32 w-auto object-cover" />
               </div>
               <div>
-              <p className='text-gray-700'>{description}</p>
+                <p className='text-black px-12'>{description}</p>
               </div>
             </div>
           ))}
