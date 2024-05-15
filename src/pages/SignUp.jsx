@@ -88,7 +88,6 @@ const SignUp = () => {
         <div>
           <input
             type="text"
-            id="names"
             placeholder="Enter Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -98,7 +97,6 @@ const SignUp = () => {
         <div>
           <input
             type="text"
-            id="username"
             placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -108,7 +106,6 @@ const SignUp = () => {
         <div>
           <input
             type="Enter password"
-            id="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
