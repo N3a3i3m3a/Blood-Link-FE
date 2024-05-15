@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'; 
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!username.trim()) {
+    if (!email.trim()) {
       setEmailError('Please enter your email address.');
       return;
-    } else if (!isValidEmail(username)) {
+    } else if (!isValidEmail(email)) {
       setEmailError('Please enter a valid email address.');
       return;
     } else {
@@ -33,7 +35,7 @@ const Login = () => {
 
     try {
       const signInData = {
-        Email: email,
+        email: email, 
         password: password,
       };
 
@@ -44,14 +46,15 @@ const Login = () => {
 
       console.log(response.data);
       if (response.status === 200) {
-
         setSuccessMessage("Login successful!");
         setErrorMessage("");
-  
       }
     } catch (error) {
-      
-      setErrorMessage("Invalid email or password");
+      if (error.response && error.response.status === 400) {
+        setErrorMessage("Invalid email or password");
+      } else {
+        setErrorMessage("An unexpected error occurred.");
+      }
       setSuccessMessage("");
       console.error("Error:", error);
     }
@@ -69,11 +72,11 @@ const Login = () => {
         <div>
           <input
             type="text"
-            id="username"
+            id="email"
             placeholder="Email"
             className="px-3 py-2 rounded-md w-[80%] border bg-slate-300"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           {emailError && <p className="text-blue-700">{emailError}</p>}
         </div>
@@ -89,11 +92,13 @@ const Login = () => {
           {passwordError && <p className="text-blue-700">{passwordError}</p>}
         </div>
         <div>
-        <button className="bg-red-600 px-5 py-2 rounded-md text-white w-[80%] border border-red-600">
+          <button type="submit" className="bg-red-600 px-5 py-2 rounded-md text-white w-[80%] border border-red-600">
             Sign In
           </button>
         </div>
       </form>
+      {successMessage && <p className="text-green-700">{successMessage}</p>}
+      {errorMessage && <p className="text-red-700">{errorMessage}</p>}
       <p className="mt-3">
         Don't have an account? <Link to='/SignUp'><span className="text-red-700">Sign Up</span></Link>
         <br />

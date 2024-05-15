@@ -108,3 +108,5 @@ const Home = () => {
 };
 
 export default Home;
+
+// server.hmr.overlay to false in vite.config.js.
