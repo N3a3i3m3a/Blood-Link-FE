@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; 
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -7,21 +8,19 @@ const Login = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-   
     if (!username.trim()) {
       setEmailError('Please enter your email address.');
       return;
     } else if (!isValidEmail(username)) {
-      setEmailError('Please inter valid password; with @, .com or .net');
+      setEmailError('Please enter a valid email address.');
       return;
     } else {
       setEmailError('');
     }
 
-   
     if (!password.trim()) {
       setPasswordError('Please enter your password.');
       return;
@@ -32,23 +31,47 @@ const Login = () => {
       setPasswordError('');
     }
 
+    try {
+      const signInData = {
+        Email: email,
+        password: password,
+      };
+
+      const response = await axios.post(
+        "https://blood-link-be.onrender.com/api/user/logIn",
+        signInData
+      );
+
+      console.log(response.data);
+      if (response.status === 200) {
+
+        setSuccessMessage("Login successful!");
+        setErrorMessage("");
+  
+      }
+    } catch (error) {
+      
+      setErrorMessage("Invalid email or password");
+      setSuccessMessage("");
+      console.error("Error:", error);
+    }
   };
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email) && (email.includes('.com') || email.includes('.net'));
+    return emailRegex.test(email);
   };
 
   return (
     <div className='w-full'>
-      <h1 className="text-2xl text-white font-bold">SIGN IN</h1>
+      <h1 className="text-2xl text-gray-500 ">SIGN IN</h1>
       <form className="mt-5 flex flex-col gap-5" onSubmit={handleLogin}>
         <div>
           <input
             type="text"
             id="username"
             placeholder="Email"
-            className=" px-3 py-2 rounded-md w-[80%] border border-red-700"
+            className="px-3 py-2 rounded-md w-[80%] border bg-slate-300"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -59,20 +82,20 @@ const Login = () => {
             type="password"
             id="password"
             placeholder="Password"
-            className=" px-3 py-2 rounded-md border border-red-700 w-[80%]"
+            className="px-3 py-2 rounded-md border bg-slate-300 w-[80%]"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           {passwordError && <p className="text-blue-700">{passwordError}</p>}
         </div>
         <div>
-          <button className="bg-red-700 px-5 py-2 rounded-md text-white w-[80%] border border-red-700">
+        <button className="bg-red-600 px-5 py-2 rounded-md text-white w-[80%] border border-red-600">
             Sign In
           </button>
         </div>
       </form>
       <p className="mt-3">
-        Don't have account?<Link to='/SignUp'> <span className="text-red-700">Sign Up</span></Link>
+        Don't have an account? <Link to='/SignUp'><span className="text-red-700">Sign Up</span></Link>
         <br />
         Forgot Password? <Link to='/Reset'><span className="text-red-700">Reset password</span></Link>
       </p>

@@ -9,13 +9,13 @@ function Process() {
     {
       id: 1,
       src: process1,
-      description: "1. Registration; The Donors create accounts and Hospitals get credentials to use for accessing aour services",
+      description: "1. Registration; The Donors create accounts and Hospitals get credentials to use for accessing our services",
       
     },
     {
       id: 2,
       src: contactimg2,
-      description: "2. Request by user; Donors request for donating immediately or book appointment according to their avalability and hospital in need of blood request for them",
+      description: "2. Request by user; Donors request for donating immediately or book appointment according to their availability and hospital in need of blood request for them",
     },
     {
       id: 3,
@@ -25,17 +25,17 @@ function Process() {
     {
       id: 4,
       src: Slogo,
-      description: "4. Fulfilment of request; Donors go to their respective hospitlas and donate as well as hospitals receive the requested blood banks ",
+      description: "4. Fulfilment of request; Donors go to their respective hospitals and donate as well as hospitals receive the requested blood banks ",
     },
   ];
 
   return (
     <section className='mt-32 text-gray-500'>
      <p className='text-gray-500 text-center text-4xl font-semibold'> Process</p>
-     <p className=' text-xl px-12 text-black'>Here are blood link's process</p>
+     <p className=' text-xl px-12 text-black mx-7 text-center'>Here are blood link's process</p>
     <div className="w-full h-[80%]">
       
-      <div className="p-4 mx-auto flex flex-col justify-center w-full">
+      <div className="p-4 mx-auto flex flex-col justify-center w-full max-w-[80%]"> {/* Adjust the max width here */}
         <div className="grid sm:grid-cols-2 md:grid-cols-2 gap-8 px-12 sm:px-0">
           {portfolios.map(({ id, src, description }) => (
             <div key={id} className="shadow-md shadow-gray-600 rounded-lg flex flex-col items-center justify-center gap-5">

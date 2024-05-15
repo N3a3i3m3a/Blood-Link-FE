@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
     <div className=" mt-32">
       <div className="about-text px-10 pt-20 pb-10 rounded-b-lg shadow-md bg-white ">
-        <h2 className="text-3xl font-semibold text-center mb-5">About Us</h2>
+      <Link to="/Admin"> <h2 className="text-3xl font-semibold text-center mb-5">About Us</h2></Link>
         <div className="grid grid-cols-12 gap-10"> {/* Grid for row layout */}
           <div className="col-span-4"> {/* Image container */}
             <img
