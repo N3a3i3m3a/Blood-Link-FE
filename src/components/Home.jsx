@@ -35,9 +35,12 @@ const Home = () => {
   }, [currentIndex]);
 
   return (
-    <div className='max-w-[1400px] h-[700px] w-full m-auto py-16 px-4 mt-12 relative'>
-      {/* Slide Container */}
-      <div className='relative w-full h-full rounded-2xl bg-center bg-cover duration-500'>
+    <div className='max-w-[1400px] w-full m-auto py-16 px-4 '>
+      <div className="sticky top-0 z-50 bg-white">
+        {/* Navbar content */}
+      </div>
+      <div className="mt-[64px] overflow-y-auto h-[calc(92vh-64px)] rounded-2xl bg-center bg-cover duration-500 relative">
+        {/* Slide Container */}
         {slides.map((slide, index) => (
           <div key={index} className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}>
             <img
@@ -75,7 +78,7 @@ const Home = () => {
               >
                 {slideIndex === 0 && "Donate now"}
                 {slideIndex === 1 && "Book appointment"}
-                {slideIndex === 2 && "Request blood bank"}
+                {slideIndex === 2 && "Request blood Donater"}
               </button>
             ))}
           </div>
