@@ -1,12 +1,1 @@
-.login-form,
-.additional-info {
-  transition: transform 0.5s ease;
-}
 
-.slide-right {
-  transform: translateX(100%);
-}
-
-.toggle-button {
-  cursor: pointer;
-}

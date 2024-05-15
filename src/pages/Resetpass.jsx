@@ -4,7 +4,7 @@ const Resetpass = () => {
   return (
     
     <div className='w-full'>           
-    <h1 className="text-2xl text-white font-bold">RESET ACCOUNT PASSWORD</h1>
+    <h1 className="text-2xl text-gray-500 font-bold">RESET ACCOUNT PASSWORD</h1>
     <h3></h3>
     <div className="mt-5 flex flex-col gap-5">
 
