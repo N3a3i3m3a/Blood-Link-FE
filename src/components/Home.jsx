@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RiRadioButtonLine, RiRadioButtonFill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const slides = [
@@ -69,17 +70,17 @@ const Home = () => {
         <div className="absolute bottom-14 left-1/2 transform -translate-x-1/2">
           <div className="flex space-x-4">
             {/* Common Button */}
-            <button className="bg-red-500 text-white px-4 py-2 rounded">Contact us</button>
+            <Link to="/Contact"><button className="bg-red-500 text-white px-4 py-2 rounded">Contact us</button></Link>
             {/* Unique Buttons */}
             {slides.map((slide, slideIndex) => (
-              <button
+              <Link to="/Login"><button
                 key={slideIndex}
                 className={`bg-red-500 text-white px-4 py-2 rounded ${currentIndex === slideIndex ? '' : 'hidden'}`}
               >
                 {slideIndex === 0 && "Donate now"}
                 {slideIndex === 1 && "Book appointment"}
                 {slideIndex === 2 && "Request blood Donater"}
-              </button>
+              </button></Link>
             ))}
           </div>
         </div>

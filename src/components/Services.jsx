@@ -20,7 +20,7 @@ const Services = () => {
                 Someone who needs to donate blood is facilitated to be linked to a nearby hospital.
               </p>
               <button className="px-3 my-5">
-                <a href="/" className=" p-2 text-white  rounded-xl bg-red-600">Click Here</a>
+                <a href="/About" className=" p-2 text-white  rounded-xl bg-red-600">Read more</a>
               </button>
             </div>
           </div>
@@ -37,7 +37,7 @@ const Services = () => {
                 You can simply book a blood donation time according to your availability.
               </p>
               <button className="px-3 my-5 ">
-                <a href="" className="p-2 rounded-xl text-white bg-red-600">Click Here</a>
+                <a href="/About" className="p-2 rounded-xl text-white bg-red-600">Read more</a>
               </button>
             </div>
           </div>
@@ -54,8 +54,8 @@ const Services = () => {
                 Health institutions in need of blood can be linked with blood donors.
               </p>
               <button className="px-3 my-5">
-                <a href="/Hospitals" className="p-2 rounded-xl text-white bg-red-600">
-                  Click Here
+                <a href="/About" className="p-2 rounded-xl text-white bg-red-600">
+                  Read more
                 </a>
               </button>
             </div>
