@@ -7,7 +7,7 @@ const Alayout = () => {
     
     <div className="bg-white h-screen flex justify-center">
       <NavBar/>
-       <section className="text-center w-[50%] p-8 rounded-lg  border  flex items-center border-red-700"><Outlet/></section>
+       <section className="text-center w-[50%] p-8 rounded-lg border-none flex items-center border-red-700"><Outlet/></section>
   </div>
   )
 }

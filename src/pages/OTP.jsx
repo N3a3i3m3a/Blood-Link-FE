@@ -2,60 +2,49 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const OTP = () => {
-  const [otp, setOTP] = useState(['', '', '', '', '', '']); // Array to hold OTP digits
+  const [code, setCode] = useState(new Array(6).fill(''));
 
-  const handleChange = (index, e) => {
-    const newOTP = [...otp];
-    newOTP[index] = e.target.value;
-    setOTP(newOTP);
-  };
+  const handleChange = (element, index) => {
+    const value = element.value.replace(/[^0-9]/g, '');
+    if (value.length > 1) return;
+    
+    const newCode = [...code];
+    newCode[index] = value;
+    setCode(newCode);
 
-  const handleClick = (index) => {
-    const inputRef = inputRefs.current[index];
-    inputRef.focus();
-  };
-
-  const handleKeyDown = (index, e) => {
-    if (e.key === 'Backspace' && index > 0 && otp[index] === '') {
-      // Move focus to the previous input field if Backspace is pressed
-      const inputRef = inputRefs.current[index - 1];
-      inputRef.focus();
+    // Focus next input field
+    if (value && element.nextSibling) {
+      element.nextSibling.focus();
     }
   };
 
-  const inputRefs = React.useRef([]); // Ref for storing input references
-
   return (
-    <div className={`bg-gray-100 w-[35rem] h-[27rem] pt-10 px-14 rounded-sm flex flex-col gap-10 shadow-lg`}>
-      <div className='flex flex-col justify-center text-gray-500 gap-2 items-center'>
-        <h2 className='font-bold text-2xl'>Verify Your Account</h2>
-        <p>Enter 6 digit code sent to the registered email id. </p>
-      </div>
-      <div>
-        {otp.map((value, index) => (
-          <input
-            key={index}
-            ref={(input) => (inputRefs.current[index] = input)}
-            type="text"
-            value={value}
-            maxLength={1}
-            onChange={(e) => handleChange(index, e)}
-            onClick={() => handleClick(index)}
-            onKeyDown={(e) => handleKeyDown(index, e)}
-            className='w-[55px] h-[50px] m-[7px] text-center text-xl border-2 border-gray-500'
-          />
-        ))}
-      </div>
-      <p className='text-gray-500'>Did not receive a code ? <Link to={"/SignUp"} className='text-blue-600'>Resend</Link></p>
-      <div>
-        <button
-          type="submit"
-          className={`block w-full rounded-lg px-5 py-3 text-sm font-medium text-white hover:bg-slate-700`}
-        >
-          <Link to ="/Login">Verify</Link>
+    <div className="h-fit flex  flex-col items-center ml-20 justify-center bg-white p-8 shadow-md">
+      <div className=" rounded  max-w-md w-full  ">
+        <p className="text-2xl font-bold mb-6 text-gray-500 text-center">Enter Authentication Code</p>
+        <h2 className='my-5 text-gray-600'>Please, enter the code that have been sent to your email!</h2>
+
+        <div className="flex justify-center space-x-2">
+          {code.map((digit, index) => (
+            <input
+              key={index}
+              type="text"
+              maxLength="1"
+              value={digit}
+              onChange={(e) => handleChange(e.target, index)}
+              className="w-12 h-12 text-center text-lg font-semibold border border-gray-300 rounded"
+            />
+          ))}
+        </div>
+        <button className="mt-6 w-full bg-red-600 text-white py-2 rounded hover:bg-gray-600 focus:outline-none">
+          Verify
         </button>
       </div>
-      <p className='text-red-400'>Don't share the verification code with anyone!</p>
+      <div className="mt-3 py-5">
+      <p >
+      Have not received code? <Link to='/Resetpass'><span className="text-red-700">click here</span></Link>
+      </p>
+      </div>
     </div>
   );
 };

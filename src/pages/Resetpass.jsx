@@ -2,33 +2,24 @@ import React from 'react'
 
 const Resetpass = () => {
   return (
-    
-    <div className='w-full'>           
+  <section className='h-fit flex flex-col items-center ml-20 justify-center bg-white p-8 shadow-md'>
+    <div className='rounded '>           
     <h1 className="text-2xl text-gray-500 font-bold">RESET ACCOUNT PASSWORD</h1>
-    <h3></h3>
-    <div className="mt-5 flex flex-col gap-5">
-
-      <div>
+    <h2 className='my-3'>Plese, inter your email address</h2>
+    <div className=" flex flex-col gap-5 p-7 w-full items-center">
+      <div className='w-full'>
         <input
-          type="password"
-          id="password"
-          placeholder="Enter new password"
+          type="email"
+          id="email"
+          placeholder="Enter email"
           value=''
-          className=" px-3 py-2 rounded-md border bg-slate-300 w-[80%]"
+          className=" px-3 py-2 rounded-md border w-full border-gray-400 "
         />
       </div>
-      <div>
-        <input
-          type="password"
-          id=""
-          placeholder="Confirm new password"
-          value=''
-          className=" px-3 py-2 rounded-md border bg-slate-300 w-[80%]"
-        />
-      </div>
-        <button className="ml-[10%] bg-red-700 mx-9 py-2 rounded-md text-white w-[80%] border">Reset Password</button>
+        <button className="ml-[10%] bg-red-600 mx-9 py-2 rounded-md text-white w-full">Reset Password</button>
       </div>
     </div>
+  </section>
   )  
 }
 

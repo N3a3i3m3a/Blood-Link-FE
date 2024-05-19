@@ -5,9 +5,9 @@ import NavBar from './NavBar'
 const Alayout = () => {
   return (
     
-    <div className="bg-white h-screen flex justify-center border">
+    <div className="bg-white h-screen flex justify-center">
       <NavBar/>
-       <section className="text-center w-[50%] p-8 rounded-lg  border  flex items-center "><Outlet/>
+       <section className="text-center w-[50%] p-8 rounded-lg  flex items-center "><Outlet/>
        </section>
   </div>
   )

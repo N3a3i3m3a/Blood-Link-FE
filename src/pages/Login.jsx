@@ -66,15 +66,16 @@ const Login = () => {
   };
 
   return (
-    <div className='w-full'>
+    <div className='w-full h-fit flex  flex-col items-center ml-20 justify-center bg-white p-8 shadow-md'>
+      <div className='w-full'>
       <h1 className="text-2xl text-gray-500 ">SIGN IN</h1>
-      <form className="mt-5 flex flex-col gap-5" onSubmit={handleLogin}>
+      <form className="mt-5 flex border-none flex-col gap-5" onSubmit={handleLogin}>
         <div>
           <input
             type="text"
             id="email"
             placeholder="Email"
-            className="px-3 py-2 rounded-md w-[80%] border bg-slate-300"
+            className="px-3 py-2 rounded-md w-[80%] border border-gray-400 "
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -85,7 +86,7 @@ const Login = () => {
             type="password"
             id="password"
             placeholder="Password"
-            className="px-3 py-2 rounded-md border bg-slate-300 w-[80%]"
+            className="px-3 py-2 rounded-md border border-gray-400 w-[80%]"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -102,8 +103,9 @@ const Login = () => {
       <p className="mt-3">
         Don't have an account? <Link to='/SignUp'><span className="text-red-700">Sign Up</span></Link>
         <br />
-        Forgot Password? <Link to='/Reset'><span className="text-red-700">Reset password</span></Link>
+        Forgot Password? <Link to='/Resetpass'><span className="text-red-700">Reset password</span></Link>
       </p>
+      </div>
     </div>
   );
 };
