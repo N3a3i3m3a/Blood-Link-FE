@@ -71,17 +71,18 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full h-fit flex  flex-col items-center ml-20 justify-center bg-white p-8 shadow-md">
+      <div className='w-full'>
       <h1 className="text-2xl text-gray-700">Register your Account</h1>
       <div className="mt-5 flex flex-col gap-5">
         <div>
           <select
             value={role}
             onChange={(e) => setRole(e.target.value)}
-            className="px-3 py-2 bg-slate-300 rounded-md w-[80%] border"
+            className="px-3 py-2 border-gray-400 rounded-md w-[80%] border"
           >
             <option value="">Select Role</option>
-            <option value="donor">Donor</option>
+            <option value="donor">Donate Now</option>
             <option value="hospital">Hospital</option>
           </select>
         </div>
@@ -91,7 +92,7 @@ const SignUp = () => {
             placeholder="Enter Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="px-3 py-2 bg-slate-300 rounded-md w-[80%] border"
+            className="px-3 py-2 border-gray-400 rounded-md w-[80%] border"
           />
         </div>
         <div>
@@ -100,7 +101,7 @@ const SignUp = () => {
             placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="px-3 py-2 bg-slate-300 rounded-md w-[80%] border"
+            className="px-3 py-2 border-gray-400 rounded-md w-[80%] border"
           />
         </div>
         <div>
@@ -109,7 +110,7 @@ const SignUp = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="px-3 py-2 bg-gray-300 rounded-md border w-[80%]"
+            className="px-3 py-2 border-gray-400 rounded-md border w-[80%]"
           />
         </div>
         {/* <div>
@@ -136,6 +137,7 @@ const SignUp = () => {
       <p className="mt-3">
         already have an account? <Link to='/Login'><span className="text-red-700">Login</span></Link>
       </p>
+      </div>
     </div>
   );
 };

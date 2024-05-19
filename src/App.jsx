@@ -11,7 +11,11 @@ import About from './components/About';
 import Services from './components/Services';
 import Process from './components/Process';
 import Contact from './components/Contact';
-
+import OTP from './pages/OTP';
+import Admin from './pages/Admin';
+import RequestBlood from './Forms/RequestBlood';
+import BookAppointment from './Forms/BookAppointment';
+import Donate from './Forms/Donate';
 
 
 const App = () => {
@@ -29,8 +33,14 @@ const App = () => {
         <Route element={<Alayout />}>
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/Reset" element={<Resetpass />} />
+          <Route path="/Resetpass" element={<Resetpass />} />
+          <Route path="/OTP" element={<OTP />} />
+          <Route path="/RequestBlood" element={<RequestBlood />} />
+          <Route path="/BookAppointment" element={<BookAppointment />} />
+          <Route path="/Donate" element={<Donate/>} />
         </Route>
+        <Route path="/Admin" element={<Admin/>}/>
+        
       </Routes>
     </Router>
   );
