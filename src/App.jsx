@@ -16,6 +16,7 @@ import Admin from './pages/Admin';
 import RequestBlood from './Forms/RequestBlood';
 import BookAppointment from './Forms/BookAppointment';
 import DonorProfile from './Forms/DonorProfile';
+import Hospital from './pages/Hospital';
 
 
 const App = () => {
@@ -40,7 +41,7 @@ const App = () => {
           <Route path="/DonorProfile" element={<DonorProfile/>} />
         </Route>
         <Route path="/Admin" element={<Admin/>}/>
-        
+        <Route path="/Hospital" element={<Hospital/>}/>
       </Routes>
     </Router>
   );

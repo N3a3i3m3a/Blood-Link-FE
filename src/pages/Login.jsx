@@ -9,7 +9,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -45,15 +45,15 @@ const Login = () => {
       if (response.status === 200) {
         setSuccessMessage("Login successful!");
         setErrorMessage("");
-        // setTimeout(() => {
-        //   if (response.data.role === 'admin') {
-        //     navigate('/Admin');
-        //   } else if (response.data.role === 'hospital') {
-        //     navigate('/Hospital');
-        //   } else if (response.data.role === 'donor') {
-        //     navigate('/DonorProfile');
-        //   }
-        // }, 3000);
+        setTimeout(() => {
+          if (response.data.role === 'admin') {
+            navigate('/Admin');
+          } else if (response.data.role === 'hospital') {
+            navigate('/Hospital');
+          } else if (response.data.role === 'donor') {
+            navigate('/DonorProfile');
+          }
+        }, 3000);
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
