@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  const navigate= useNavigate("")
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,6 +35,7 @@ const SignUp = () => {
       );
       setSuccessMessage("You have registered successfully!");
       setErrorMessage("");
+      navigate("/OTP")
       console.log("Success:", response.data); 
     } catch (error) {
       if (error.response) {
@@ -82,7 +84,7 @@ const SignUp = () => {
             className="px-3 py-2 border-gray-400 rounded-md w-[80%] border"
           >
             <option value="">Select Role</option>
-            <option value="donor">Donate Now</option>
+            <option value="donor">Donor</option>
             <option value="hospital">Hospital</option>
           </select>
         </div>
