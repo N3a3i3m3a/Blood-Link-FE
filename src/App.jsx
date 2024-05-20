@@ -15,7 +15,7 @@ import OTP from './pages/OTP';
 import Admin from './pages/Admin';
 import RequestBlood from './Forms/RequestBlood';
 import BookAppointment from './Forms/BookAppointment';
-import Donate from './Forms/Donate';
+import DonorProfile from './Forms/DonorProfile';
 
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
           <Route path="/OTP" element={<OTP />} />
           <Route path="/RequestBlood" element={<RequestBlood />} />
           <Route path="/BookAppointment" element={<BookAppointment />} />
-          <Route path="/Donate" element={<Donate/>} />
+          <Route path="/DonorProfile" element={<DonorProfile/>} />
         </Route>
         <Route path="/Admin" element={<Admin/>}/>
         
