@@ -37,7 +37,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'messages',
 		label: 'Messages',
-		path: '/messages',
+		path: '/Hmessages',
 		icon: <HiOutlineAnnotation />
 	}
 ]
