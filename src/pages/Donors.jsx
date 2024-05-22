@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -13,7 +12,7 @@ const Donor = () => {
 
   const fetchDonors = async () => {
     try {
-      const response = await axios.get('/api/donors'); // Adjust the URL to your API endpoint
+      const response = await axios.get('https://blood-link-be.onrender.com/api/donor/getDonor');
       if (Array.isArray(response.data)) {
         setDonors(response.data);
       } else {
@@ -28,7 +27,7 @@ const Donor = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/donors/${id}`); // Adjust the URL to your API endpoint
+      await axios.delete(`https://blood-link-be.onrender.com/api/donor/deleteDonor//${id}`);
       fetchDonors();
     } catch (error) {
       console.error("Error deleting donor:", error);
@@ -36,7 +35,6 @@ const Donor = () => {
   };
 
   const handleUpdate = (id) => {
-    
     console.log(`Update donor with ID: ${id}`);
   };
 
@@ -59,13 +57,13 @@ const Donor = () => {
         <tbody>
           {donors.map(donor => (
             <tr key={donor.id}>
-              <td>{donor.name}</td>
-              <td>{donor.bloodType}</td>
-              <td>{donor.contact}</td>
-              <td>{new Date(donor.lastDonationDate).toLocaleDateString()}</td>
+              <td>{donor.fullName}</td>
+              <td>{donor.bloodGroup}</td>
+              <td>{donor.mobileNumber}</td>
+              <td>{new Date(donor.createdAt).toLocaleDateString()}</td>
               <td>
-                <button onClick={() => handleUpdate(donor.id)}>Update</button>
-                <button onClick={() => handleDelete(donor.id)}>Delete</button>
+                <button className='bg-green-600 border rounded-md' onClick={() => handleUpdate(donor.id)} style={{ marginRight: '10px' }}>Update</button>
+                <button className="bg-red-600 border rounded-md" onClick={() => handleDelete(donor.id)}>Delete</button>
               </td>
             </tr>
           ))}

@@ -1,4 +1,4 @@
-
+// /src/components/Messages.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -13,7 +13,7 @@ const Messages = () => {
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get('/api/messages'); // Adjust the URL to your API endpoint
+      const response = await axios.get('https://blood-link-be.onrender.com/api/contact-us/listMessage'); // Adjust the URL to your API endpoint
       if (Array.isArray(response.data)) {
         setMessages(response.data);
       } else {
@@ -44,10 +44,10 @@ const Messages = () => {
         <tbody>
           {messages.map((message) => (
             <tr key={message.id}>
-              <td>{message.name}</td>
+              <td>{message.fullName}</td>
               <td>{message.email}</td>
               <td>{message.message}</td>
-              <td>{new Date(message.date).toLocaleDateString()}</td>
+              <td>{new Date(message.createdAt).toLocaleDateString()}</td>
             </tr>
           ))}
         </tbody>
