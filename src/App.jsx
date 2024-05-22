@@ -12,7 +12,7 @@ import Services from './components/Services';
 import Process from './components/Process';
 import Contact from './components/Contact';
 import OTP from './pages/OTP';
-import Admin from './pages/Admin';
+import AdminLay from './components/AdminLay';
 import RequestBlood from './Forms/RequestBlood';
 import BookAppointment from './Forms/BookAppointment';
 import DonorProfile from './Forms/DonorProfile';
@@ -22,6 +22,7 @@ import Hospital from './pages/Hospital'
 import Requests from './pages/Requests'
 import Donation from './pages/Donation'
 import Messages  from './pages/Messages'
+import ADashboard from "./dasboards/components/ADashboard"
 
 
 
@@ -44,19 +45,25 @@ const App = () => {
           <Route path="/OTP" element={<OTP />} />
           <Route path="/RequestBlood" element={<RequestBlood />} />
           <Route path="/BookAppointment" element={<BookAppointment />} />
-           </Route>
-        <Route path="/Admin" element={<Admin/>}/>
+
+        </Route>
         <Route path="/Hospital" element={<Hospital/>}/>
         <Route path="/DonorProfile" element={<DonorProfile/>} />
+        
 
+        <Route  element={<AdminLay/>}>
+          <Route path="/ADashboard" element={<ADashboard/>}/>
+          <Route path="/requests" element={<Requests/>}/>
+          <Route path="/hospitals" element={<Hospital/>}/>
+          <Route path="/donation" element={<Donation />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="donors" element={<Donors />} />
+        </Route>
+              
 
-        <Route path="donors" element={<Donors />} />
-                    <Route path="/requests" element={<Requests/>}/>
-                    <Route path="/hospitals" element={<Hospital/>}/>
-                    <Route path="/donation" element={<Donation />} />
-                    <Route path="/messages" element={<Messages />} />
 
       </Routes>
+
     </Router>
   );
 };
