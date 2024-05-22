@@ -30,7 +30,7 @@ import HDashboard from './hos-dashboard/hpages/HDashboard'
 import ExistingRequest from './hos-dashboard/hpages/ExistingRequest'
 import BloodRequest from './hos-dashboard/hpages/BloodRequest'
 import  HMessages from './hos-dashboard/hpages/HMessages'
-
+import ConfirmNewPass from './pages/ConfirmNewPass';
 
 
 const App = () => {
@@ -52,7 +52,7 @@ const App = () => {
           <Route path="/OTP" element={<OTP />} />
           <Route path="/RequestBlood" element={<RequestBlood />} />
           <Route path="/BookAppointment" element={<BookAppointment />} />
-
+          <Route path="/ConfirmNewPassword" element={<ConfirmNewPass/>} />
         </Route>
         <Route path="/Hospital" element={<Hospital/>}/>
         <Route path="/DonorProfile" element={<DonorProfile/>} />
@@ -76,9 +76,8 @@ const App = () => {
                 <Route path="/messages" element={<HMessages />} />
                 <Route path="/p" element={<Notification />} />
                 </Route>
-
-
       </Routes>
+      
 
     </Router>
   );
