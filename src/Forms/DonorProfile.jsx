@@ -1,92 +1,173 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
-const OTP = () => {
-  const [code, setCode] = useState(new Array(6).fill(''));
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate();
+const DonorProfile = () => {
+  const [fullName, setFullName] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [nationalID, setNationalID] = useState('');
+  const [email, setEmail] = useState('');
+  const [province, setProvince] = useState('');
+  const [district, setDistrict] = useState('');
+  const [sector, setSector] = useState('');
+  const [BloodGroup, setBloodGroup] = useState('');
+  const [age, setAge] = useState('');
+  const [gender, setGender] = useState('');
+  const [weight, setWeight] = useState('');
+  const [donationAvailability, setDonationAvailability] = useState('');
 
-  const handleChange = (element, index) => {
-    const value = element.value.replace(/[^0-9]/g, '');
-    if (value.length > 1) return;
-
-    const newCode = [...code];
-    newCode[index] = value;
-    setCode(newCode);
-
-    // Focus next input field
-    if (value && element.nextSibling) {
-      element.nextSibling.focus();
-    }
-  };
-
-  const handleVerify = async () => {
-    const otp = code.join('');
-    if (otp.length < 6) {
-      setErrorMessage('Please enter the 6-digit code.');
-      return;
-    }
-
-    try {
-      const response = await axios.post("https://blood-link-be.onrender.com/api/user/verify", { otp });
-
-      if (response.status === 200) {
-        setSuccessMessage("Verification successful!");
-        setErrorMessage("");
-        setTimeout(() => {
-          navigate('/Dashboard'); // Adjust the path as necessary
-        }, 2000);
-      } else {
-        setErrorMessage("Invalid OTP code.");
-        setSuccessMessage("");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      if (error.response && error.response.status === 400) {
-        setErrorMessage("Invalid OTP code.");
-      } else {
-        setErrorMessage("An unexpected error occurred.");
-      }
-      setSuccessMessage("");
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log(`Donor Info: 
+      Full Name: ${fullName}, 
+      Mobile Number: ${mobileNumber}, 
+      National ID: ${nationalID}, 
+      Email: ${email}, 
+      Province: ${province}, 
+      District: ${district}, 
+      Sector: ${sector}, 
+      Blood Group: ${BloodGroup}, 
+      Age: ${age}, 
+      Gender: ${gender}, 
+      Weight: ${weight}, 
+      Donation Availability: ${donationAvailability}`);
   };
 
   return (
-    <div className="h-fit flex flex-col items-center ml-20 justify-center bg-white p-8 shadow-md">
-      <div className="rounded max-w-md w-full">
-        <p className="text-2xl font-bold mb-6 text-gray-500 text-center">Enter Authentication Code</p>
-        <h2 className='my-5 text-gray-600'>Please, enter the code that has been sent to your email!</h2>
-
-        <div className="flex justify-center space-x-2">
-          {code.map((digit, index) => (
+    <section className='h-fit flex flex-col items-center ml-20 justify-center bg-white p-8 shadow-md'>
+      <div className='rounded'>
+        <h1 className="text-2xl text-gray-500 font-bold">CREATE YOUR PROFILE</h1>
+        <h2 className='my-3'>Please fill in your details into this form</h2>
+        <form className="flex flex-col gap-5 p-7 w-full items-center" onSubmit={handleSubmit}>
+          <div className='w-full flex flex-wrap gap-5'>
             <input
-              key={index}
               type="text"
-              maxLength="1"
-              value={digit}
-              onChange={(e) => handleChange(e.target, index)}
-              className="w-12 h-12 text-center text-lg font-semibold border border-gray-300 rounded"
+              id="fullName"
+              placeholder="Full Name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
             />
-          ))}
-        </div>
-        <button
-          className="mt-6 w-full bg-red-600 text-white py-2 rounded hover:bg-gray-600 focus:outline-none"
-          onClick={handleVerify}
-        >
-          Verify
-        </button>
-        {successMessage && <p className="text-green-700 mt-3">{successMessage}</p>}
-        {errorMessage && <p className="text-red-700 mt-3">{errorMessage}</p>}
+            <input
+              type="text"
+              id="mobileNumber"
+              placeholder="Mobile Number"
+              value={mobileNumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            />
+          </div>
+          <div className='w-full flex flex-wrap gap-5'>
+            <input
+              type="text"
+              id="nationalID"
+              placeholder="National ID"
+              value={nationalID}
+              onChange={(e) => setNationalID(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            />
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            />
+          </div>
+          <div className='w-full flex flex-wrap gap-5'>
+            <input
+              type="text"
+              id="province"
+              placeholder="Province"
+              value={province}
+              onChange={(e) => setProvince(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            />
+            <input
+              type="text"
+              id="district"
+              placeholder="District"
+              value={district}
+              onChange={(e) => setDistrict(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            />
+            <input
+              type="text"
+              id="sector"
+              placeholder="Sector"
+              value={sector}
+              onChange={(e) => setSector(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            />
+          </div>
+          <div className='w-full flex flex-wrap gap-5'>
+            <input
+              type="text"
+              id="BloodGroup"
+              placeholder="Blood Group"
+              value={BloodGroup}
+              onChange={(e) => setBloodGroup(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            />
+            <input
+              type="number"
+              id="age"
+              placeholder="Age"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            />
+            <select
+              id="gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className='w-full flex flex-wrap gap-5'>
+            <input
+              type="number"
+              id="weight"
+              placeholder="Weight (kg)"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            />
+            <select
+              id="donationAvailability"
+              value={donationAvailability}
+              onChange={(e) => setDonationAvailability(e.target.value)}
+              className="flex-1 px-3 py-2 rounded-md border border-gray-400"
+              required
+            >
+              <option value="">Donation Availability</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <button type="submit" className="ml-[10%] bg-red-600 mx-9 py-2 rounded-md text-white w-full">
+            Donate Now
+          </button>
+        </form>
       </div>
-      <div className="mt-3 py-5">
-        <p>
-          Have not received code? <Link to='/Resetpass'><span className="text-red-700">click here</span></Link>
-        </p>
-      </div>
-    </div>
+    </section>
   );
 };
 
-export default OTP;
+export default DonorProfile;
