@@ -13,32 +13,26 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
 		label: 'Dashboard',
-		path: '/ADashboard',
+		path: '/',
 		icon: <HiOutlineViewGrid />
 	},
 	{
-		key: 'donors',
-		label: 'Donors',
-		path: '/donors',
+		key: 'blood-request',
+		label: 'Blood Request',
+		path: '/bloodrequest',
 		icon: <BiSolidDonateBlood />
 	},
 	{
-		key: 'orders',
-		label: 'Hospitals',
-		path: '/hospitals',
+		key: 'notification',
+		label: 'Notification',
+		path: '/notification',
 		icon: <FaHospital />
 	},
 	{
-		key: 'request',
+		key: 'requests',
 		label: 'Requests',
 		path: '/requests',
 		icon: <HiOutlineUsers />
-	},
-	{
-		key: 'donation',
-		label: 'Donation',
-		path: '/donation',
-		icon: <HiOutlineDocumentText />
 	},
 	{
 		key: 'messages',
