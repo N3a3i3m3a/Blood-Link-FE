@@ -10,7 +10,7 @@ const Admin = () => {
       <Sidebar/>
       </div>
       <div className='flex flex-col  '>
-      <div className=' flex fixed ml-60  '>
+      <div className=' flex fixed ml-60'>
        <Header/>
       </div>
       <div className='w-[100%] ml-60 mt-20'>
