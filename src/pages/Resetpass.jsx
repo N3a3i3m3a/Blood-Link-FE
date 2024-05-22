@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Resetpass = () => {
   const [email, setEmail] = useState('');
@@ -33,12 +34,12 @@ const Resetpass = () => {
               className="px-3 py-2 rounded-md border w-full border-gray-400"
             />
           </div>
-          <button 
+          <Link to="/ConfirmNewPassword"><button 
             onClick={handleResetPassword} 
             className="ml-[10%] bg-red-600 mx-9 py-2 rounded-md text-white w-full"
           >
             Reset Password
-          </button>
+          </button></Link>
         </div>
       </div>
     </section>
