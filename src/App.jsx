@@ -15,8 +15,19 @@ import OTP from './pages/OTP';
 import Admin from './pages/Admin';
 import RequestBlood from './Forms/RequestBlood';
 import BookAppointment from './Forms/BookAppointment';
+<<<<<<< HEAD
 import Hospital from './pages/Hospital';
 import DonorProfile from './Forms/DonorProfile';
+=======
+import DonorProfile from './Forms/DonorProfile';
+
+import Donor from './pages/Donors'
+import Hospital from './pages/Hospital'
+import Requests from './pages/Requests'
+import Donation from './pages/Donation'
+import Messages  from './pages/Messages'
+
+>>>>>>> aaae29c152f372ba749736e478473eb17fe1926f
 
 
 const App = () => {
@@ -40,9 +51,20 @@ const App = () => {
           <Route path="/BookAppointment" element={<BookAppointment />} />
           
         </Route>
+
         <Route path="/Admin" element={<Admin/>}/>
+<<<<<<< HEAD
         <Route path="/Hospital" element={<Hospital/>}/>
         <Route path="/DonorProfile" element={<DonorProfile/>} />
+=======
+
+        <Route path="donors" element={<Donor />} />
+                    <Route path="/requests" element={<Requests/>}/>
+                    <Route path="/hospitals" element={<Hospital/>}/>
+                    <Route path="/donation" element={<Donation />} />
+                    <Route path="/messages" element={<Messages />} />
+
+>>>>>>> aaae29c152f372ba749736e478473eb17fe1926f
       </Routes>
     </Router>
   );
