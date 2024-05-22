@@ -24,6 +24,13 @@ import Donation from './pages/Donation'
 import Messages  from './pages/Messages'
 import ADashboard from "./dasboards/components/ADashboard"
 
+import HLayout from './hos-dashboard/components/shared/HLayout'
+import Notifications from './hos-dashboard/hpages/Notifications'
+import HDashboard from './hos-dashboard/hpages/HDashboard'
+import ExistingRequest from './hos-dashboard/hpages/ExistingRequest'
+import BloodRequest from './hos-dashboard/hpages/BloodRequest'
+import  HMessages from './hos-dashboard/hpages/HMessages'
+
 
 
 const App = () => {
@@ -57,7 +64,15 @@ const App = () => {
           <Route path="donors" element={<Donor />} />
         </Route>
               
-      
+        <Route element={<HLayout />}>
+                    <Route path="/hDashboard" element={<HDashboard />} />
+                    <Route path="bloodrequest" element={<BloodRequest />} />
+                    <Route path="/requests" element={<ExistingRequest/>}/>
+                    <Route path="/notification" element={<Notifications />} />
+                <Route path="/messages" element={<HMessages />} />
+                <Route path="/p" element={<Notification />} />
+                </Route>
+               
 
       </Routes>
 

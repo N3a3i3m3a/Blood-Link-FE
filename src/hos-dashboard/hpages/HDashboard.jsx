@@ -5,7 +5,7 @@ import TransactionChart from '../components/DonationChart'
 // import PopularProducts from '../components/PopularHospital'
 // import RecentRequest from '../components/RecentRequest'
 
-export default function Dashboard() {
+export default function HDashboard() {
 	return (
 		<div className="flex flex-col gap-4">
 			<DashboardStatsGrid />
