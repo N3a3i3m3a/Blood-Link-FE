@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Donor = () => {
+const Donors = () => {
   const [donors, setDonors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -75,4 +75,4 @@ const Donor = () => {
   );
 };
 
-export default Donor;
+export default Donors;
