@@ -1,9 +1,9 @@
 import React from 'react'
-import ADashboard from '../dasboards/components/ADashboard'
 import Header from '../dasboards/components/Header'
 import Sidebar from '../dasboards/components/Sidebar'
+import { Outlet } from 'react-router-dom'
 
-const Admin = () => {
+const AdminLay = () => {
   return (
    <section className='flex flex-row w-full bg-gray-100'>
       <div className='flex fixed '>
@@ -14,11 +14,11 @@ const Admin = () => {
        <Header/>
       </div>
       <div className='w-[100%] ml-60 mt-20'>
-        <ADashboard/>
+        <Outlet/>
       </div>
       </div>
    </section>
   )
 }
 
-export default Admin
+export default AdminLay
