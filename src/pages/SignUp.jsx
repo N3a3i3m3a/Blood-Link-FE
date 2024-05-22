@@ -3,7 +3,9 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  const navigate= useNavigate("")
+
+  const navigate = useNavigate("")
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,7 +37,9 @@ const SignUp = () => {
       );
       setSuccessMessage("You have registered successfully!");
       setErrorMessage("");
-      navigate("/OTP")
+
+      navigate("/OTP");
+
       console.log("Success:", response.data); 
     } catch (error) {
       if (error.response) {

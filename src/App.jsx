@@ -16,7 +16,13 @@ import Admin from './pages/Admin';
 import RequestBlood from './Forms/RequestBlood';
 import BookAppointment from './Forms/BookAppointment';
 import DonorProfile from './Forms/DonorProfile';
-import Hospital from './pages/Hospital';
+
+import Donor from './pages/Donors'
+import Hospital from './pages/Hospital'
+import Requests from './pages/Requests'
+import Donation from './pages/Donation'
+import Messages  from './pages/Messages'
+
 
 
 const App = () => {
@@ -40,8 +46,15 @@ const App = () => {
           <Route path="/BookAppointment" element={<BookAppointment />} />
           <Route path="/DonorProfile" element={<DonorProfile/>} />
         </Route>
+
         <Route path="/Admin" element={<Admin/>}/>
-        <Route path="/Hospital" element={<Hospital/>}/>
+
+        <Route path="donors" element={<Donor />} />
+                    <Route path="/requests" element={<Requests/>}/>
+                    <Route path="/hospitals" element={<Hospital/>}/>
+                    <Route path="/donation" element={<Donation />} />
+                    <Route path="/messages" element={<Messages />} />
+
       </Routes>
     </Router>
   );
