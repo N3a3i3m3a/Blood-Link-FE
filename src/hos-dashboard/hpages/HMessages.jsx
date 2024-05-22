@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Messages = () => {
+const HMessages = () => {
   return (
     <div>Messages</div>
   )
 }
 
-export default Messages
+export default HMessages
