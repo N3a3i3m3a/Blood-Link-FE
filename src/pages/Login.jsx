@@ -46,11 +46,11 @@ const Login = () => {
         setSuccessMessage("Login successful!");
         setErrorMessage("");
         setTimeout(() => {
-          if (response.data.role === 'admin') {
-            navigate('/Admin');
-          } else if (response.data.role === 'hospital') {
-            navigate('/Hospital');
-          } else if (response.data.role === 'donor') {
+          if (response.data.user.role === 'admin') {
+            navigate('/ADashboard');
+          } else if (response.data.user.role === 'hospital') {
+            navigate('/HDashboard');
+          } else if (response.data.user.role === 'donor') {
             navigate('/DonorProfile');
           }
         }, 3000);

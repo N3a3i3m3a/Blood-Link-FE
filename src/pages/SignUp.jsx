@@ -37,7 +37,7 @@ const SignUp = () => {
       );
       setSuccessMessage("You have registered successfully!");
       setErrorMessage("");
-
+console.log(response.data)
       navigate("/OTP");
 
       console.log("Success:", response.data); 

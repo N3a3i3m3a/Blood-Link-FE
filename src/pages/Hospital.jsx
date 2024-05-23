@@ -11,7 +11,11 @@ const Hospital = () => {
       try {
         const response = await axios.get('https://blood-link-be.onrender.com/api/hospital/list');
         console.log('API response:', response.data); // Log the response data
-        setHospitals(response.data);
+        if (response.data && response.data.all_hospitals) {
+          setHospitals(response.data.all_hospitals);
+        } else {
+          setError('Invalid data format');
+        }
         setLoading(false);
       } catch (err) {
         console.error('Error fetching data:', err); // Log the error
