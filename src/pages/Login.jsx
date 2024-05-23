@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-0
+
     if (!email.trim()) {
       setEmailError('Please enter your email address.');
       return;

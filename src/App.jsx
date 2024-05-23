@@ -53,9 +53,10 @@ const App = () => {
           <Route path="/RequestBlood" element={<RequestBlood />} />
           <Route path="/BookAppointment" element={<BookAppointment />} />
           <Route path="/ConfirmNewPassword" element={<ConfirmNewPass/>} />
+          <Route path="/DonorProfile" element={<DonorProfile/>} />
         </Route>
         <Route path="/Hospital" element={<Hospital/>}/>
-        <Route path="/DonorProfile" element={<DonorProfile/>} />
+        
         
 
         <Route  element={<AdminLay/>}>
