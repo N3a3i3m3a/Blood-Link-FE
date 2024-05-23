@@ -17,7 +17,7 @@ import RequestBlood from './Forms/RequestBlood';
 import BookAppointment from './Forms/BookAppointment';
 import DonorProfile from './Forms/DonorProfile';
 
-import Donor from './pages/Donors'
+import Donors from './pages/Donors'
 import Hospital from './pages/Hospital'
 import Requests from './pages/Requests'
 import Donation from './pages/Donation'
@@ -30,7 +30,7 @@ import HDashboard from './hos-dashboard/hpages/HDashboard'
 import ExistingRequest from './hos-dashboard/hpages/ExistingRequest'
 import BloodRequest from './hos-dashboard/hpages/BloodRequest'
 import  HMessages from './hos-dashboard/hpages/HMessages'
-
+import ConfirmNewPass from './pages/ConfirmNewPass';
 
 
 const App = () => {
@@ -52,8 +52,12 @@ const App = () => {
           <Route path="/OTP" element={<OTP />} />
           <Route path="/RequestBlood" element={<RequestBlood />} />
           <Route path="/BookAppointment" element={<BookAppointment />} />
+          <Route path="/ConfirmNewPassword" element={<ConfirmNewPass/>} />
           <Route path="/DonorProfile" element={<DonorProfile/>} />
         </Route>
+        <Route path="/Hospital" element={<Hospital/>}/>
+        
+        
 
         <Route  element={<AdminLay/>}>
           <Route path="/ADashboard" element={<ADashboard/>}/>
@@ -61,9 +65,10 @@ const App = () => {
           <Route path="/hospitals" element={<Hospital/>}/>
           <Route path="/donation" element={<Donation />} />
           <Route path="/messages" element={<Messages />} />
-          <Route path="donors" element={<Donor />} />
+          <Route path="donors" element={<Donors />} />
         </Route>
               
+
         <Route element={<HLayout />}>
                     <Route path="/hDashboard" element={<HDashboard />} />
                     <Route path="bloodrequest" element={<BloodRequest />} />
@@ -72,9 +77,8 @@ const App = () => {
                 <Route path="/messages" element={<HMessages />} />
                 <Route path="/p" element={<Notification />} />
                 </Route>
-               
-
       </Routes>
+      
 
     </Router>
   );

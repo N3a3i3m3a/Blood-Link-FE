@@ -77,7 +77,7 @@ const Home = () => {
                 key={slideIndex}
                 className={`bg-red-500 text-white px-4 py-2 rounded ${currentIndex === slideIndex ? '' : 'hidden'}`}
               >
-                {slideIndex === 0 && "Donate now"}
+                {slideIndex === 0 && "Donate blood"}
                 {slideIndex === 1 && "Book appointment"}
                 {slideIndex === 2 && "Request blood Donater"}
               </button></Link>
