@@ -70,11 +70,11 @@ const App = () => {
               
 
         <Route element={<HLayout />}>
-                    <Route path="/hDashboard" element={<HDashboard />} />
+                    <Route path="/HDashboard" element={<HDashboard />} />
                     <Route path="bloodrequest" element={<BloodRequest />} />
-                    <Route path="/requests" element={<ExistingRequest/>}/>
+                    <Route path="/requestss" element={<ExistingRequest/>}/>
                     <Route path="/notification" element={<Notifications />} />
-                <Route path="/messages" element={<HMessages />} />
+                <Route path="/Hmessages" element={<HMessages />} />
                 <Route path="/p" element={<Notification />} />
                 </Route>
       </Routes>

@@ -36,7 +36,7 @@ const Resetpass = () => {
           </div>
           <Link to="/ConfirmNewPassword"><button 
             onClick={handleResetPassword} 
-            className="ml-[10%] bg-red-600 mx-9 py-2 rounded-md text-white w-full"
+            className="w-[20rem] bg-red-600 py-2 rounded-md  text-white"
           >
             Reset Password
           </button></Link>

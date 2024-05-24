@@ -85,7 +85,7 @@ console.log(response.data)
           <select
             value={role}
             onChange={(e) => setRole(e.target.value)}
-            className="px-3 py-2 border-gray-400 rounded-md w-[80%] border"
+            className="px-3 py-2 border-gray-400 rounded-md w-full border"
           >
             <option value="">Select Role</option>
             <option value="donor">Donor</option>
@@ -98,7 +98,7 @@ console.log(response.data)
             placeholder="Enter Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="px-3 py-2 border-gray-400 rounded-md w-[80%] border"
+            className="px-3 py-2 border-gray-400 rounded-md w-full border"
           />
         </div>
         <div>
@@ -107,7 +107,7 @@ console.log(response.data)
             placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="px-3 py-2 border-gray-400 rounded-md w-[80%] border"
+            className="px-3 py-2 border-gray-400 rounded-md w-full border"
           />
         </div>
         <div>
@@ -116,7 +116,7 @@ console.log(response.data)
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="px-3 py-2 border-gray-400 rounded-md border w-[80%]"
+            className="px-3 py-2 border-gray-400 rounded-md border w-full"
           />
         </div>
         {/* <div>

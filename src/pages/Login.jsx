@@ -81,7 +81,7 @@ const Login = () => {
               type="text"
               id="email"
               placeholder="Email"
-              className="px-3 py-2 rounded-md w-[80%] border border-gray-400"
+              className="px-3 py-2 rounded-md w-full border border-gray-400"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -92,14 +92,14 @@ const Login = () => {
               type="password"
               id="password"
               placeholder="Password"
-              className="px-3 py-2 rounded-md border border-gray-400 w-[80%]"
+              className="px-3 py-2 rounded-md border border-gray-400 w-full"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             {passwordError && <p className="text-blue-700">{passwordError}</p>}
           </div>
           <div>
-            <button type="submit" className="bg-red-600 px-5 py-2 rounded-md text-white w-[80%] border border-red-600">
+            <button type="submit" className="bg-red-600 px-5 py-2 rounded-md text-white w-full border border-red-600">
               Sign In
             </button>
           </div>
