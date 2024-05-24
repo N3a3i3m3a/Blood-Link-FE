@@ -13,7 +13,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
 		label: 'Dashboard',
-		path: '/',
+		path: '/HDashboard',
 		icon: <HiOutlineViewGrid />
 	},
 	{
@@ -31,7 +31,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'requests',
 		label: 'Requests',
-		path: '/requests',
+		path: '/requestss',
 		icon: <HiOutlineUsers />
 	},
 	{

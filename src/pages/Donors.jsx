@@ -5,6 +5,7 @@ const Donors = () => {
   const [donors, setDonors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedDonor, setSelectedDonor] = useState(null);
 
   useEffect(() => {
     fetchDonors();
@@ -27,48 +28,153 @@ const Donors = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://blood-link-be.onrender.com/api/donor/deleteDonor//${id}`);
-      fetchDonors();
+      await axios.delete(`https://blood-link-be.onrender.com/api/donor/deleteDonor/${id}`);
+      setDonors(donors.filter(donor => donor.id !== id)); // Update the state to remove the deleted donor
     } catch (error) {
       console.error("Error deleting donor:", error);
     }
   };
 
-  const handleUpdate = (id) => {
-    console.log(`Update donor with ID: ${id}`);
+  const handleUpdate = (donor) => {
+    setSelectedDonor(donor);
+  };
+
+  const handleUpdateSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`https://blood-link-be.onrender.com/api/donor/updateDonor/${selectedDonor.id}`, {
+        fullName: selectedDonor.fullName,
+        bloodGroup: selectedDonor.bloodGroup,
+        mobileNumber: selectedDonor.mobileNumber,
+        createdAt: selectedDonor.createdAt,
+      });
+      fetchDonors(); // Refresh the donors list
+      setSelectedDonor(null); // Close the modal
+    } catch (error) {
+      console.error("Error updating donor:", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setSelectedDonor({ ...selectedDonor, [name]: value });
   };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading donors: {error.message}</p>;
 
   return (
-    <div>
-      <h2>Donors List</h2>
-      <table>
+    <div className="container mx-auto px-4">
+      <h2 className="text-2xl font-bold mb-4">Donors List</h2>
+      <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Blood Type</th>
-            <th>Contact</th>
-            <th>Last Donation Date</th>
-            <th>Actions</th>
+            <th className="py-2 border-b">Name</th>
+            <th className="py-2 border-b">Blood Type</th>
+            <th className="py-2 border-b">Contact</th>
+            <th className="py-2 border-b">Last Donation Date</th>
+            <th className="py-2 border-b">Actions</th>
           </tr>
         </thead>
         <tbody>
           {donors.map(donor => (
             <tr key={donor.id}>
-              <td>{donor.fullName}</td>
-              <td>{donor.bloodGroup}</td>
-              <td>{donor.mobileNumber}</td>
-              <td>{new Date(donor.createdAt).toLocaleDateString()}</td>
-              <td>
-                <button className='bg-green-600 border rounded-md' onClick={() => handleUpdate(donor.id)} style={{ marginRight: '10px' }}>Update</button>
-                <button className="bg-red-600 border rounded-md" onClick={() => handleDelete(donor.id)}>Delete</button>
+              <td className="border px-4 py-2">{donor.fullName}</td>
+              <td className="border px-4 py-2">{donor.bloodGroup}</td>
+              <td className="border px-4 py-2">{donor.mobileNumber}</td>
+              <td className="border px-4 py-2">{new Date(donor.createdAt).toLocaleDateString()}</td>
+              <td className="border px-4 py-2">
+                <button 
+                  className='bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-700' 
+                  onClick={() => handleUpdate(donor)}
+                  style={{ marginRight: '10px' }}
+                >
+                  Update
+                </button>
+                <button 
+                  className="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-700" 
+                  onClick={() => handleDelete(donor.id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {selectedDonor && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-bold mb-4">Update Donor</h2>
+            <form onSubmit={handleUpdateSubmit}>
+              <div className="mb-4">
+                <label htmlFor="fullName" className="block text-gray-700">Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  value={selectedDonor.fullName}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="bloodGroup" className="block text-gray-700">Blood Type</label>
+                <input
+                  type="text"
+                  id="bloodGroup"
+                  name="bloodGroup"
+                  value={selectedDonor.bloodGroup}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="mobileNumber" className="block text-gray-700">Contact</label>
+                <input
+                  type="text"
+                  id="mobileNumber"
+                  name="mobileNumber"
+                  value={selectedDonor.mobileNumber}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="createdAt" className="block text-gray-700">Last Donation Date</label>
+                <input
+                  type="date"
+                  id="createdAt"
+                  name="createdAt"
+                  value={new Date(selectedDonor.createdAt).toISOString().substr(0, 10)}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="flex justify-end space-x-4">
+                <button 
+                  type="submit" 
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-blue-700"
+                >
+                  Save
+                </button>
+                <button 
+                  type="button" 
+                  className="bg-gray-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-gray-700" 
+                  onClick={() => setSelectedDonor(null)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
