@@ -3,19 +3,21 @@ import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
-    <div className=" mt-32">
-      <div className="about-text px-10 pt-20 pb-16 rounded-b-lg shadow-md bg-white ">
-      <Link to="/Admin"> <h2 className="text-3xl font-semibold text-center mb-5">About Us</h2></Link>
-        <div className="grid grid-cols-12 gap-10"> {/* Grid for row layout */}
-          <div className="col-span-4"> {/* Image container */}
+    <div className="mt-16 md:mt-32">
+      <div className="about-text px-4 sm:px-6 md:px-10 pt-12 md:pt-20 pb-8 md:pb-16 rounded-b-lg shadow-md bg-white">
+        <Link to="/Admin">
+          <h2 className="text-3xl font-semibold text-center mb-5">About Us</h2>
+        </Link>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6"> {/* Grid for row layout */}
+          <div className="md:col-span-4"> {/* Image container */}
             <img
               className="w-full h-auto rounded-lg object-cover"
               src="contactimg.avif"
               alt="Logo"
             />
           </div>
-          <div className="col-span-8"> {/* Paragraphs container */}
-            <div className="space-y-5 my-12"> {/* Spacing between paragraphs */}
+          <div className="md:col-span-8"> {/* Paragraphs container */}
+            <div className="space-y-5 my-8 md:my-12"> {/* Spacing between paragraphs */}
               <p className="leading-relaxed text-left">
                 Welcome to our innovative blood donation application, designed to revolutionize the way blood donors and hospitals connect and coordinate life-saving donations. Here's more about us:
 

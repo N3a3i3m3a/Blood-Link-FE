@@ -6,60 +6,47 @@ import { Link } from 'react-router-dom';
 
 const Services = () => {
   return (
-    <div className="bg-gradient-to-b from-red-200 to-white mt-20 w-full py-20 px-7 text-gray-700">
-      <h2 className="text-3xl px-60 text-gray-500 font-semibold mb-10 text-center">Services</h2>
-      <div className="flex gap-7 justify-between">
-        <div className="border  rounded-lg p-5 overflow-hidden ">
-          <div className="services1 group">
-            <img src="/Donate.webp" alt="Donate now" className='h-48' />
-             <BiSolidDonateBlood className="text-red-500 text-4xl " /> 
-            <br />
-            
-            <div className="text1">
-              <h4 className='text-xl font-semibold'>Facilitating Donating blood immediately</h4>
-              <p>
-                Someone who needs to donate blood is facilitated to be linked to a nearby hospital.
-              </p>
-              <Link to="/About"> <button className="px-3 my-5 p-2 rounded-xl text-white bg-red-600 ">
-                Read more
-              </button></Link>
-            </div>
-          </div>
-        </div>
-        <div className="border  rounded-lg p-5 overflow-hidden">
-          <div className="services2 group w-full ">
-            <img src="Book.jpg" alt="requestsimg" className='h-48 w-full' />
-            <MdBloodtype className="text-red-500 text-4xl" />
-            <br />
-  
-            <div className="text2 ">
-              <h4 className='text-xl font-semibold'>Easy booking for blood donation</h4>
-              <p>
-                You can simply book a blood donation time according to your availability.
-              </p>
-              <Link to="/About"> <button className="px-3 my-5 p-2 rounded-xl text-white bg-red-600 ">
-                Read more
-              </button></Link>
-            </div>
-          </div>
-        </div>
-        <div className="border  rounded-lg p-5 overflow-hidden">
-          <div className="services3 group">
-            <img src="/Hospital.jpg" alt="donateimg" className='h-48 w-full'  />
-            <FaAmbulance className="text-red-500 text-4xl" />
-            <br />
-            
-            <div className="text3">
-              <h4 className='text-xl font-semibold'>Blood requesting facilitation </h4>
-              <p>
-                Health institutions in need of blood can be linked with blood donors.
-              </p>
-              <Link to="/About"> <button className="px-3 my-5 p-2 rounded-xl text-white bg-red-600 ">
-                Read more
-              </button></Link>
-            </div>
-          </div>
-        </div>
+    <div className="bg-gradient-to-b from-red-200 to-white mt-20 py-10 md:py-20 px-4 sm:px-10 md:px-20 text-gray-700">
+      <h2 className="text-3xl md:text-4xl font-semibold mb-10 text-center">Services</h2>
+      <div className="flex flex-col md:flex-row gap-5 justify-between">
+        <ServiceCard
+          icon={<BiSolidDonateBlood className="text-red-500 text-4xl" />}
+          image="/Donate.webp"
+          title="Facilitating Donating blood immediately"
+          description="Someone who needs to donate blood is facilitated to be linked to a nearby hospital."
+        />
+        <ServiceCard
+          icon={<MdBloodtype className="text-red-500 text-4xl" />}
+          image="/Book.jpg"
+          title="Easy booking for blood donation"
+          description="You can simply book a blood donation time according to your availability."
+        />
+        <ServiceCard
+          icon={<FaAmbulance className="text-red-500 text-4xl" />}
+          image="/Hospital.jpg"
+          title="Blood requesting facilitation"
+          description="Health institutions in need of blood can be linked with blood donors."
+        />
+      </div>
+    </div>
+  );
+};
+
+const ServiceCard = ({ icon, image, title, description }) => {
+  return (
+    <div className="border rounded-lg p-5 overflow-hidden flex flex-col justify-between">
+      <div className="group">
+        <img src={image} alt="Service" className='h-48 w-full object-cover' />
+        {icon}
+      </div>
+      <div className="mt-4">
+        <h4 className='text-xl font-semibold'>{title}</h4>
+        <p>{description}</p>
+        <Link to="/About">
+          <button className="mt-4 px-3 py-2 rounded-xl text-white bg-red-600">
+            Read more
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { IoLocationSharp } from "react-icons/io5";
 import { MdOutlineMailOutline } from 'react-icons/md';
 import { IoCallSharp } from 'react-icons/io5';
-import Footer from './Footer'; // Import your Footer component if it's defined in a separate file
-
+import Footer from './Footer'; 
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -44,18 +43,18 @@ const Contact = () => {
   };
 
   return (
-    <div className="mt-20 bg-red-700 w-full px-7 text-gray-700 max-h-max pb-16">
-      <h2 className="text-3xl text-gray-200 ml-[40%] my-7 font-semibold mt-14">Contact Us</h2>
-      <div className="flex flex-wrap justify-between items-center">
+    <div className="mt-20 bg-red-700 w-full px-4 sm:px-6 md:px-10 py-8 text-gray-200">
+      <h2 className="text-3xl font-semibold text-center mb-5">Contact Us</h2>
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
         {/* Left Section - Contact Information */}
-        <div className="w-[80%] md:w-1/2 mb-8 md:mb-0">
-          <p className="text-white text-2xl mt-7">Contact Information</p>
+        <div className="md:w-1/2 mb-4 md:mb-0">
+          <p className="text-2xl mt-7">Contact Information</p>
           <br />
-          <p className="text-white"><IoLocationSharp  className="text-white text-2xl" /> Kacyiru, Kigali</p>
+          <p><IoLocationSharp className="text-2xl" /> Kacyiru, Kigali</p>
           <br />
-          <p className="text-white"><MdOutlineMailOutline className="text-white text-2xl" /> danb@gmail.com</p>
+          <p><MdOutlineMailOutline className="text-2xl" /> danb@gmail.com</p>
           <br />
-          <p className="text-white"><IoCallSharp className="text-white text-2xl" /> +2507888888888</p>
+          <p><IoCallSharp className="text-2xl" /> +2507888888888</p>
           <br />
         </div>
 
@@ -114,7 +113,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
-      <hr className="w-[80%] ml-36" />
+      <hr className="w-[80%] ml-auto" />
       <Footer />
     </div>
   );

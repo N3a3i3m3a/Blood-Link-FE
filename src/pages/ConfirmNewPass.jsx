@@ -2,8 +2,8 @@ import React from 'react'
 
 const ConfirmNewPass = () => {
     return (
-        <section className='h-fit flex flex-col items-center ml-20 justify-center bg-white p-8 shadow-md'>
-          <div className='rounded '>           
+        <section className='h-fit flex flex-col w-full ml-20 justify-center bg-white p-8 shadow-md'>
+          <div className='rounded w-full '>           
           <h1 className="text-2xl text-gray-500 font-bold">CONFIRM NEW PASSWORD</h1>
           <h2 className='my-3'>Please fill in the following form, to reset you password</h2>
           <div className=" flex flex-col gap-5 p-7 w-full items-center">

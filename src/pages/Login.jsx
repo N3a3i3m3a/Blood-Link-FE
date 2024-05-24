@@ -72,8 +72,8 @@ const Login = () => {
   };
 
   return (
-    <div className='w-full h-fit flex flex-col items-center ml-20 justify-center bg-white p-8 shadow-md'>
-      <div className='w-full'>
+    <div className='w-full h-fit flex flex-col items-center mt-20 ml-16 justify-center bg-white md:w-full sm:w-full p-8 shadow-md'>
+      <div className='w-full justify-center'>
         <h1 className="text-2xl text-gray-500">SIGN IN</h1>
         <form className="mt-5 flex border-none flex-col gap-5" onSubmit={handleLogin}>
           <div>
@@ -92,7 +92,7 @@ const Login = () => {
               type="password"
               id="password"
               placeholder="Password"
-              className="px-3 py-2 rounded-md border border-gray-400 w-full"
+              className="px-3 py-2 rounded-md w-full border border-gray-400 w"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

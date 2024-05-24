@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   const slides = [
-    { src: '/Donate.webp', alt: 'Donate blood',},
+    { src: '/Donate.webp', alt: 'Donate blood' },
     { src: '/Book.jpg', alt: 'Book appointment' },
     { src: '/Hospital.jpg', alt: 'Request for blood' },
   ];
@@ -36,18 +36,16 @@ const Home = () => {
   }, [currentIndex]);
 
   return (
-    <div className='max-w-[1400px] w-full m-auto py-16 px-4 '>
-      <div className="sticky top-0 z-50 bg-white">
-        {/* Navbar content */}
-      </div>
-      <div className="mt-[64px] overflow-y-auto h-[calc(92vh-64px)] rounded-2xl bg-center bg-cover duration-500 relative">
+    <div className='max-w-[1400px] w-full mx-auto py-16 px-4'>
+     
+      <div className="mt-[64px] overflow-y-auto h-[calc(92vh-64px)] rounded-2xl bg-center bg-cover duration-500 md:mr-0 sm:mr-0 relative">
         {/* Slide Container */}
         {slides.map((slide, index) => (
           <div key={index} className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}>
             <img
               src={slide.src}
               alt={slide.alt}
-              className='w-full h-full'
+              className='w-full h-full object-cover'
             />
             {/* Text Overlay */}
             <div className='absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center'>
@@ -73,8 +71,7 @@ const Home = () => {
             <Link to="/Contact"><button className="bg-red-500 text-white px-4 py-2 rounded">Contact us</button></Link>
             {/* Unique Buttons */}
             {slides.map((slide, slideIndex) => (
-              <Link to="/Login"><button
-                key={slideIndex}
+              <Link to="/Login" key={slideIndex}><button
                 className={`bg-red-500 text-white px-4 py-2 rounded ${currentIndex === slideIndex ? '' : 'hidden'}`}
               >
                 {slideIndex === 0 && "Donate blood"}
@@ -109,5 +106,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// server.hmr.overlay to false in vite.config.js.
