@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function BloodRequest() {
-    const [hospitalID, setHospitalID] = useState('');
-    const [bloodGroup, setBloodGroup] = useState('');
-    const [bloodAmount, setBloodAmount] = useState('');
+    const [hospital, setHospital] = useState('');
+    const [emergencyBloodType, setEmergencyBloodType] = useState('');
+    const [quantity, setQuantity] = useState('');
     const [responseMessage, setResponseMessage] = useState(null);
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetchRequests();
@@ -21,7 +20,6 @@ export default function BloodRequest() {
             setLoading(false);
         } catch (error) {
             console.error('Error fetching requests:', error);
-            setError(error);
             setLoading(false);
         }
     };
@@ -34,9 +32,9 @@ export default function BloodRequest() {
 
         try {
             const response = await axios.post('https://blood-link-be.onrender.com/api/hospital/bloodRequest', {
-                hospitalID,
-                bloodGroup,
-                bloodAmount
+                hospital,
+                emergencyBloodType,
+                quantity
             });
 
             if (response.status === 200) {
@@ -51,9 +49,9 @@ export default function BloodRequest() {
         }
 
         // Clear the form fields
-        setHospitalID('');
-        setBloodGroup('');
-        setBloodAmount('');
+        setHospital('');
+        setEmergencyBloodType('');
+        setQuantity('');
     };
 
     return (
@@ -61,35 +59,35 @@ export default function BloodRequest() {
             <h2 className="text-xl font-bold mb-4">Blood Request Form</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label htmlFor="hospitalID" className="block text-gray-700">Hospital ID</label>
+                    <label htmlFor="hospital" className="block text-gray-700">Hospital</label>
                     <input
                         type="text"
-                        id="hospitalID"
+                        id="hospital"
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                        value={hospitalID}
-                        onChange={(e) => setHospitalID(e.target.value)}
+                        value={hospital}
+                        onChange={(e) => setHospital(e.target.value)}
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="bloodGroup" className="block text-gray-700">Blood Group</label>
+                    <label htmlFor="emergencyBloodType" className="block text-gray-700">Emergency Blood Type</label>
                     <input
                         type="text"
-                        id="bloodGroup"
+                        id="emergencyBloodType"
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                        value={bloodGroup}
-                        onChange={(e) => setBloodGroup(e.target.value)}
+                        value={emergencyBloodType}
+                        onChange={(e) => setEmergencyBloodType(e.target.value)}
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="bloodAmount" className="block text-gray-700">Amount of Blood Needed</label>
+                    <label htmlFor="quantity" className="block text-gray-700">Quantity</label>
                     <input
                         type="number"
-                        id="bloodAmount"
+                        id="quantity"
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                        value={bloodAmount}
-                        onChange={(e) => setBloodAmount(e.target.value)}
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
                         required
                     />
                 </div>
@@ -107,21 +105,20 @@ export default function BloodRequest() {
             )}
             <h2 className="text-xl font-bold mt-8 mb-4">Existing Blood Requests</h2>
             {loading && <p>Loading...</p>}
-            {error && <p>Error loading requests: {error.message}</p>}
             <table className="min-w-full bg-white">
                 <thead>
                     <tr>
-                        <th className="py-2">Hospital ID</th>
-                        <th className="py-2">Blood Group</th>
-                        <th className="py-2">Amount</th>
+                        <th className="py-2">Hospital</th>
+                        <th className="py-2">Emergency Blood Type</th>
+                        <th className="py-2">Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
                     {requests.map((request, index) => (
                         <tr key={index}>
-                            <td className="border px-4 py-2">{request.hospitalID}</td>
-                            <td className="border px-4 py-2">{request.bloodGroup}</td>
-                            <td className="border px-4 py-2">{request.bloodAmount}</td>
+                            <td className="border px-4 py-2">{request.hospital}</td>
+                            <td className="border px-4 py-2">{request.emergencyBloodType}</td>
+                            <td className="border px-4 py-2">{request.quantity}</td>
                         </tr>
                     ))}
                 </tbody>
