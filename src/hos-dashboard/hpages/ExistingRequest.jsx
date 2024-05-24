@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Request = () => {
+const Requests = () => {
   return (
     <div>Exiting Request</div>
   )
 }
 
-export default Request
+export default Requests
