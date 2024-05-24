@@ -2,6 +2,7 @@ import React from 'react';
 import { BiSolidDonateBlood } from "react-icons/bi";
 import { MdBloodtype } from "react-icons/md";
 import { FaAmbulance } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Services = () => {
   return (
@@ -19,9 +20,9 @@ const Services = () => {
               <p>
                 Someone who needs to donate blood is facilitated to be linked to a nearby hospital.
               </p>
-              <button className="px-3 my-5">
-                <a href="/About" className=" p-2 text-white  rounded-xl bg-red-600">Read more</a>
-              </button>
+              <Link to="/About"> <button className="px-3 my-5 p-2 rounded-xl text-white bg-red-600 ">
+                Read more
+              </button></Link>
             </div>
           </div>
         </div>
@@ -36,9 +37,9 @@ const Services = () => {
               <p>
                 You can simply book a blood donation time according to your availability.
               </p>
-              <button className="px-3 my-5 ">
-                <a href="/About" className="p-2 rounded-xl text-white bg-red-600">Read more</a>
-              </button>
+              <Link to="/About"> <button className="px-3 my-5 p-2 rounded-xl text-white bg-red-600 ">
+                Read more
+              </button></Link>
             </div>
           </div>
         </div>
@@ -53,11 +54,9 @@ const Services = () => {
               <p>
                 Health institutions in need of blood can be linked with blood donors.
               </p>
-              <button className="px-3 my-5">
-                <a href="/About" className="p-2 rounded-xl text-white bg-red-600">
-                  Read more
-                </a>
-              </button>
+              <Link to="/About"> <button className="px-3 my-5 p-2 rounded-xl text-white bg-red-600 ">
+                Read more
+              </button></Link>
             </div>
           </div>
         </div>

@@ -36,7 +36,7 @@ const OTP = () => {
         setSuccessMessage("Verification successful!");
         setErrorMessage("");
         setTimeout(() => {
-          navigate('/Dashboard'); // Adjust the path as necessary
+          navigate('/Login'); // Adjust the path as necessary
         }, 2000);
       } else {
         setErrorMessage("Invalid OTP code.");
@@ -80,9 +80,9 @@ const OTP = () => {
         {successMessage && <p className="text-green-700 mt-3">{successMessage}</p>}
         {errorMessage && <p className="text-red-700 mt-3">{errorMessage}</p>}
       </div>
-      <div className="mt-3 py-5">
+      <div className="mt-3 py-5 w-full">
         <p>
-          Have not received code? <Link to='/Resetpass'><span className="text-red-700">click here</span></Link>
+          Have not received code? <Link to='/Resetpass'><span className="text-red-700 w-full">click here</span></Link>
         </p>
       </div>
     </div>

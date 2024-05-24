@@ -70,7 +70,7 @@ const App = () => {
               
 
         <Route element={<HLayout />}>
-                    <Route path="/hDashboard" element={<HDashboard />} />
+                    <Route path="/HDashboard" element={<HDashboard />} />
                     <Route path="bloodrequest" element={<BloodRequest />} />
                     <Route path="/requestss" element={<ExistingRequest/>}/>
                     <Route path="/notification" element={<Notifications />} />
