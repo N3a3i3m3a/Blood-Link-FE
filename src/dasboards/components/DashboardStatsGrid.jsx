@@ -46,7 +46,7 @@ export default function DashboardStatsGrid() {
           <IoBagHandle className="text-2xl text-white" />
         </div>
         <div className="pl-4">
-          <span className="text-sm text-gray-500 font-light">Total donors</span>
+          <span className="text-sm text-gray-500 font-light">Total matched donations</span>
           <div className="flex items-center">
             <strong className="text-xl text-gray-700 font-semibold">{donorsCount}</strong>
           </div>
@@ -57,7 +57,7 @@ export default function DashboardStatsGrid() {
           <IoPieChart className="text-2xl text-white" />
         </div>
         <div className="pl-4">
-          <span className="text-sm text-gray-500 font-light">Total Register</span>
+          <span className="text-sm text-gray-500 font-light">Total registered donors</span>
           <div className="flex items-center">
             <strong className="text-xl text-gray-700 font-semibold">{hospitalsCount}</strong>
           </div>
@@ -79,7 +79,7 @@ export default function DashboardStatsGrid() {
           <IoCart className="text-2xl text-white" />
         </div>
         <div className="pl-4">
-          <span className="text-sm text-gray-500 font-light">Total Requests</span>
+          <span className="text-sm text-gray-500 font-light">Total hospitals requests</span>
           <div className="flex items-center">
             <strong className="text-xl text-gray-700 font-semibold">{requestsCount}</strong>
           </div>

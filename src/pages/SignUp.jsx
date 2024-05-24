@@ -77,7 +77,7 @@ console.log(response.data)
   };
 
   return (
-    <div className="w-full h-fit flex  flex-col items-center ml-20 justify-center bg-white p-8 shadow-md">
+    <div className="w-full h-fit flex mt-12 flex-col items-center ml-20 justify-center bg-white p-8 shadow-md">
       <div className='w-full'>
       <h1 className="text-2xl text-gray-700">Register your Account</h1>
       <div className="mt-5 flex flex-col gap-5">
@@ -131,7 +131,7 @@ console.log(response.data)
         </div> */}
         <button
           onClick={handleSubmit}
-          className="ml-[10%] mx-9 py-2 bg-red-600 rounded-md text-white w-[80%] border"
+          className=" py-2 bg-red-600 rounded-md text-white w-full border"
           disabled={loading || !validateForm()}
         >
           {loading ? "Signing Up..." : "Sign Up"}
@@ -141,7 +141,7 @@ console.log(response.data)
         {errorMessage && <p className="text-red-700">{errorMessage}</p>}
       
       <p className="mt-3">
-        already have an account? <Link to='/Login'><span className="text-red-700">Login</span></Link>
+        already have an account? <Link to='/Login'><span className="text-red-700 ">Login</span></Link>
       </p>
       </div>
     </div>

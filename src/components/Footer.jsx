@@ -1,39 +1,21 @@
-import React from 'react'
-import { FaGithub } from "react-icons/fa6";
-import { FaTwitter } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-
-
-
+import React from 'react';
+import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-      <section className='flex flex-row bg-red-700 justify-around items-center h-20'>
-        <div className='flex flex-row'>
-          <div>
-        <img src='/Slogo.PNG' alt='footer' className='h-10'/>
-        </div>
-        <div>
-        <p className='text-black'>Copyright &copy; {new Date().getFullYear()}.Blood-Link by DANB All rights reserved</p>
-        </div>
-        </div>
-        <div className='flex flex-row gap-5'>
-          <div >
-        <FaGithub  className='text-black '/>
-        </div>
-        <div>
-        <FaTwitter className='text-black '  />
-        </div>
-        <div>
-        <FaLinkedin className='text-black '  />
-        </div>
-        <div>
-        <FaInstagram className='text-black '  />
-        </div>
-        </div>
-      </section>
-  )
-}
+    <footer className='bg-red-700 text-white py-4 px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row justify-between items-center'>
+      <div className='flex items-center mb-4 sm:mb-0'>
+        <img src='/Slogo.PNG' alt='footer' className='h-10 mr-4' />
+        <p className='text-black'>Copyright &copy; {new Date().getFullYear()}. Blood-Link by DANB All rights reserved</p>
+      </div>
+      <div className='flex gap-5'>
+        <FaGithub className='text-black' />
+        <FaTwitter className='text-black' />
+        <FaLinkedin className='text-black' />
+        <FaInstagram className='text-black' />
+      </div>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;
