@@ -25,11 +25,11 @@ import Messages  from './pages/Messages'
 import ADashboard from "./dasboards/components/ADashboard"
 
 import HLayout from './hos-dashboard/components/shared/HLayout'
-import Notifications from './hos-dashboard/hpages/Notifications'
+// import Notifications from './hos-dashboard/hpages/Notifications'
 import HDashboard from './hos-dashboard/hpages/HDashboard'
 import ExistingRequest from './hos-dashboard/hpages/ExistingRequest'
 import BloodRequest from './hos-dashboard/hpages/BloodRequest'
-import  HMessages from './hos-dashboard/hpages/HMessages'
+// import  HMessages from './hos-dashboard/hpages/HMessages'
 import ConfirmNewPass from './pages/ConfirmNewPass';
 
 
@@ -73,8 +73,8 @@ const App = () => {
                     <Route path="/HDashboard" element={<HDashboard />} />
                     <Route path="bloodrequest" element={<BloodRequest />} />
                     <Route path="/requestss" element={<ExistingRequest/>}/>
-                    <Route path="/notification" element={<Notifications />} />
-                <Route path="/Hmessages" element={<HMessages />} />
+                    {/* <Route path="/notification" element={<Notifications />} /> */}
+                {/* <Route path="/Hmessages" element={<HMessages />} /> */}
                 <Route path="/p" element={<Notification />} />
                 </Route>
       </Routes>

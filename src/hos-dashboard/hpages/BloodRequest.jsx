@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 export default function BloodRequest() {
@@ -6,23 +6,6 @@ export default function BloodRequest() {
     const [emergencyBloodType, setEmergencyBloodType] = useState('');
     const [quantity, setQuantity] = useState('');
     const [responseMessage, setResponseMessage] = useState(null);
-    const [requests, setRequests] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        fetchRequests();
-    }, []);
-
-    const fetchRequests = async () => {
-        try {
-            const response = await axios.get('https://blood-link-be.onrender.com/api/hospital/requests');
-            setRequests(response.data);
-            setLoading(false);
-        } catch (error) {
-            console.error('Error fetching requests:', error);
-            setLoading(false);
-        }
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,7 +22,6 @@ export default function BloodRequest() {
 
             if (response.status === 200) {
                 setResponseMessage('Request submitted successfully!');
-                fetchRequests(); // Refresh the list of requests after submitting a new one
             } else {
                 setResponseMessage('Failed to submit request. Please try again.');
             }
@@ -103,26 +85,6 @@ export default function BloodRequest() {
                     {responseMessage}
                 </p>
             )}
-            <h2 className="text-xl font-bold mt-8 mb-4">Existing Blood Requests</h2>
-            {loading && <p>Loading...</p>}
-            <table className="min-w-full bg-white">
-                <thead>
-                    <tr>
-                        <th className="py-2">Hospital</th>
-                        <th className="py-2">Emergency Blood Type</th>
-                        <th className="py-2">Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {requests.map((request, index) => (
-                        <tr key={index}>
-                            <td className="border px-4 py-2">{request.hospital}</td>
-                            <td className="border px-4 py-2">{request.emergencyBloodType}</td>
-                            <td className="border px-4 py-2">{request.quantity}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
         </div>
     );
 }

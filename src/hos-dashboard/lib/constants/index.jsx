@@ -22,24 +22,24 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/bloodrequest',
 		icon: <BiSolidDonateBlood />
 	},
-	{
-		key: 'notification',
-		label: 'Notification',
-		path: '/notification',
-		icon: <FaHospital />
-	},
+	// {
+	// 	key: 'notification',
+	// 	label: 'Notification',
+	// 	path: '/notification',
+	// 	icon: <FaHospital />
+	// },
 	{
 		key: 'requests',
 		label: 'Requests',
 		path: '/requestss',
 		icon: <HiOutlineUsers />
 	},
-	{
-		key: 'messages',
-		label: 'Messages',
-		path: '/Hmessages',
-		icon: <HiOutlineAnnotation />
-	}
+	// {
+	// 	key: 'messages',
+	// 	label: 'Messages',
+	// 	path: '/Hmessages',
+	// 	icon: <HiOutlineAnnotation />
+	// }
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
