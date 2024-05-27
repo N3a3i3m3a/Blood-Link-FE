@@ -26,7 +26,7 @@ export default function Sidebar() {
         <div className="bg-gray-500 w-60 p-3 flex flex-col">
             <div className="flex items-center gap-2 px-1 py-3">
                 <BiSolidDonateHeart fontSize={24} />
-                <span className="text-neutral-200 text-lg">Blood Link</span>
+                <span className="text-neutral-200 text-lg">Hospital</span>
             </div>
             <div className="py-8 flex flex-1 flex-col gap-0.5">
                 {DASHBOARD_SIDEBAR_LINKS.map((link) => (
