@@ -1,4 +1,3 @@
-// /src/components/Messages.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -26,32 +25,37 @@ const Messages = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading messages: {error.message}</p>;
+  const deleteMessage = async (id) => {
+    try {
+      await axios.delete(`https://blood-link-be.onrender.com/api/contact-us/deleteMessage/${id}`); // Adjust the URL to your API endpoint
+      setMessages(messages.filter(message => message.id !== id));
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  if (loading) return <p className="text-center mt-4">Loading...</p>;
+  if (error) return <p className="text-center text-red-500 mt-4">Error loading messages: {error.message}</p>;
 
   return (
-    <div>
-      <h2>Messages from Donors</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Donor Name</th>
-            <th>Email</th>
-            <th>Message</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {messages.map((message) => (
-            <tr key={message.id}>
-              <td>{message.fullName}</td>
-              <td>{message.email}</td>
-              <td>{message.message}</td>
-              <td>{new Date(message.createdAt).toLocaleDateString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="container mx-auto px-4">
+      <h2 className="text-2xl font-bold mb-4">Messages from Donors</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {messages.map((message) => (
+          <div key={message.id} className="bg-white p-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold mb-2">{message.fullName}</h3>
+            <p className="text-gray-700"><strong>Email:</strong> {message.email}</p>
+            <p className="text-gray-700 mb-2"><strong>Message:</strong> {message.message}</p>
+            <p className="text-gray-700"><strong>Date:</strong> {new Date(message.createdAt).toLocaleDateString()}</p>
+            <button
+              onClick={() => deleteMessage(message.id)}
+              className="mt-2 py-1 px-2 bg-red-500 text-white rounded-md text-sm hover:bg-red-600"
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
