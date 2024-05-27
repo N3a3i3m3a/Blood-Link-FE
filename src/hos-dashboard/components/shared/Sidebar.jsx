@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BiSolidDonateHeart } from 'react-icons/bi';
 import { HiOutlineLogout } from 'react-icons/hi';
-import axios from 'axios';
 import { DASHBOARD_SIDEBAR_LINKS, DASHBOARD_SIDEBAR_BOTTOM_LINKS } from '../../lib/constants';
 
 const linkClass = 'flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-700 hover:no-underline active:bg-neutral-600 rounded-sm text-base text-white';
 
 export default function Sidebar() {
     const navigate = useNavigate();
-    const [logoutMessage, setLogoutMessage] = useState('');
 
-    const handleLogout = async () => {
-        try {
-            await axios.post('https://blood-link-be.onrender.com/api/user/logout'); // Adjust the URL as necessary
-            setLogoutMessage('Logout successful!');
-            navigate('/login', { state: { message: 'Logout successful!' } }); // Redirect to the login page after logout
-        } catch (error) {
-            console.error('Error logging out:', error);
-        }
+    const handleLogout = () => {
+        // Clear user-related data from local storage
+        localStorage.removeItem('userToken'); // Adjust the key as necessary
+        localStorage.removeItem('userInfo'); // Adjust the key as necessary
+
+        // Navigate to the login page
+        navigate('/login', { state: { message: 'Logout successful!' } });
     };
 
     return (

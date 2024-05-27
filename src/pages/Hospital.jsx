@@ -201,7 +201,7 @@ const Hospital = () => {
             <button
               type="submit"
               className="
-              py-2 px-4 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 max-w-xs w-full"
+              py-2 px-4 bg-red-500 text-white rounded-md text-sm hover:bg-blue-600 max-w-xs w-full"
               >
                 Add Hospital
               </button>
