@@ -66,42 +66,34 @@ const Donors = () => {
   return (
     <div className="container mx-auto px-4">
       <h2 className="text-2xl font-bold mb-4">Donors List</h2>
-      <table className="min-w-full bg-white border border-gray-300">
-        <thead>
-          <tr>
-            <th className="py-2 border-b">Name</th>
-            <th className="py-2 border-b">Blood Type</th>
-            <th className="py-2 border-b">Contact</th>
-            <th className="py-2 border-b">Last Donation Date</th>
-            <th className="py-2 border-b">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {donors.map(donor => (
-            <tr key={donor.id}>
-              <td className="border px-4 py-2">{donor.fullName}</td>
-              <td className="border px-4 py-2">{donor.bloodGroup}</td>
-              <td className="border px-4 py-2">{donor.mobileNumber}</td>
-              <td className="border px-4 py-2">{new Date(donor.createdAt).toLocaleDateString()}</td>
-              <td className="border px-4 py-2">
-                <button 
-                  className='bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-700' 
-                  onClick={() => handleUpdate(donor)}
-                  style={{ marginRight: '10px' }}
-                >
-                  Update
-                </button>
-                <button 
-                  className="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-700" 
-                  onClick={() => handleDelete(donor.id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {donors.map(donor => (
+          <div key={donor._id} className="bg-white rounded-lg shadow-md p-4">
+            <h2 className="text-lg font-semibold mb-2">{donor.fullName}</h2>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Blood Type:</span> {donor.bloodGroup}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Contact:</span> {donor.mobileNumber}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Province:</span> {donor.province}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">District:</span> {donor.district}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Sector:</span> {donor.sector}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Last Donation Date:</span> {new Date(donor.createdAt).toLocaleDateString()}</p>
+            <div className="flex justify-end">
+              <button 
+                className='bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-700' 
+                onClick={() => handleUpdate(donor)}
+                style={{ marginRight: '10px' }}
+              >
+                Update
+              </button>
+              <button 
+                className="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-700" 
+                onClick={() => handleDelete(donor._id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
 
       {selectedDonor && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -166,17 +158,18 @@ const Donors = () => {
                 <button 
                   type="button" 
                   className="bg-gray-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-gray-700" 
-                  onClick={() => setSelectedDonor(null)}
-                >
-                  Cancel
-                </button>
+                    onClick={() => setSelectedDonor(null)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
-  );
-};
-
-export default Donors;
+      );
+    };
+    
+    export default Donors;
+    

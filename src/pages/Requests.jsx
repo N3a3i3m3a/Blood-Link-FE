@@ -17,6 +17,16 @@ const Requests = () => {
       });
   }, []);
 
+  const handleDelete = (id) => {
+    // Implement delete functionality here
+    console.log('Delete request with ID:', id);
+  };
+
+  const handleApprove = (id) => {
+    // Implement approve functionality here
+    console.log('Approve request with ID:', id);
+  };
+
   if (loading) {
     return <div className="text-center mt-10">Loading...</div>;
   }
@@ -24,32 +34,29 @@ const Requests = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Request List</h1>
-      <table className="min-w-full bg-white">
-        <thead>
-          <tr>
-            <th className="py-2 px-4 border-b">Emergency Blood Type</th>
-            <th className="py-2 px-4 border-b">Hospital Name</th>
-            <th className="py-2 px-4 border-b">Email</th>
-            <th className="py-2 px-4 border-b">Phone</th>
-            <th className="py-2 px-4 border-b">Province</th>
-            <th className="py-2 px-4 border-b">District</th>
-            <th className="py-2 px-4 border-b">Sector</th>
-          </tr>
-        </thead>
-        <tbody>
-          {requests.map(request => (
-            <tr key={request._id}>
-              <td className="py-2 px-4 border-b">{request.emergencyBloodType}</td>
-              <td className="py-2 px-4 border-b">{request.hospital.name}</td>
-              <td className="py-2 px-4 border-b">{request.hospital.email}</td>
-              <td className="py-2 px-4 border-b">{request.hospital.phone}</td>
-              <td className="py-2 px-4 border-b">{request.hospital.province}</td>
-              <td className="py-2 px-4 border-b">{request.hospital.district}</td>
-              <td className="py-2 px-4 border-b">{request.hospital.sector}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {requests.map(request => (
+          <div key={request._id} className="bg-white rounded-lg shadow-md p-4">
+            <h2 className="text-lg font-semibold mb-2">{request.emergencyBloodType}</h2>
+            {request.hospital ? (
+              <>
+                <p className="text-gray-600 mb-2"><span className="font-semibold">Hospital Name:</span> {request.hospital.name}</p>
+                <p className="text-gray-600 mb-2"><span className="font-semibold">Email:</span> {request.hospital.email}</p>
+                <p className="text-gray-600 mb-2"><span className="font-semibold">Phone:</span> {request.hospital.phone}</p>
+                <p className="text-gray-600 mb-2"><span className="font-semibold">Province:</span> {request.hospital.province}</p>
+                <p className="text-gray-600 mb-2"><span className="font-semibold">District:</span> {request.hospital.district}</p>
+                <p className="text-gray-600 mb-2"><span className="font-semibold">Sector:</span> {request.hospital.sector}</p>
+              </>
+            ) : (
+              <p className="text-gray-600 mb-2"><span className="font-semibold">Hospital Details:</span> Not available</p>
+            )}
+            <div className="flex justify-end">
+              <button onClick={() => handleApprove(request._id)} className="bg-green-500 text-white px-4 py-2 rounded-md mr-2">Approve</button>
+              <button onClick={() => handleDelete(request._id)} className="bg-red-500 text-white px-4 py-2 rounded-md">Delete</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
