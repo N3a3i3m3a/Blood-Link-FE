@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const DonorProfile = () => {
   const [fullName, setFullName] = useState('');
@@ -14,22 +15,42 @@ const DonorProfile = () => {
   const [weight, setWeight] = useState('');
   const [donationAvailability, setDonationAvailability] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(`Donor Info: 
-      Full Name: ${fullName}, 
-      Mobile Number: ${mobileNumber}, 
-      National ID: ${nationalID}, 
-      Email: ${email}, 
-      Province: ${province}, 
-      District: ${district}, 
-      Sector: ${sector}, 
-      Blood Group: ${BloodGroup}, 
-      Age: ${age}, 
-      Gender: ${gender}, 
-      Weight: ${weight}, 
-      Donation Availability: ${donationAvailability}`);
+    const donorData = {
+      fullName,
+      mobileNumber,
+      nationalID,
+      email,
+      province,
+      district,
+      sector,
+      bloodGroup: BloodGroup,
+      age,
+      gender,
+      weight,
+      donationAvailability,
+    };
+
+    try {
+      const response = await axios.post('https://blood-link-be.onrender.com/api/donor/create', donorData);
+      console.log('Donor created successfully:', response.data);
+      // Optionally, reset the form after successful submission
+      setFullName('');
+      setMobileNumber('');
+      setNationalID('');
+      setEmail('');
+      setProvince('');
+      setDistrict('');
+      setSector('');
+      setBloodGroup('');
+      setAge('');
+      setGender('');
+      setWeight('');
+      setDonationAvailability('');
+    } catch (error) {
+      console.error('Error creating donor:', error.response ? error.response.data : error.message);
+    }
   };
 
   return (
@@ -38,7 +59,7 @@ const DonorProfile = () => {
         <h1 className="text-2xl text-gray-500 font-bold">CREATE YOUR PROFILE</h1>
         <h2 className='my-1'>Please fill in your details into this form</h2>
         <form className="flex flex-col gap-5 p-7 w-full items-center" onSubmit={handleSubmit}>
-          <div className='w-full flex flex-wrap '>
+          <div className='w-full flex flex-wrap'>
             <input
               type="text"
               id="fullName"
@@ -48,10 +69,9 @@ const DonorProfile = () => {
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
-            
           </div>
-          <div  className='w-full flex flex-wrap gap-5' >
-          <input
+          <div className='w-full flex flex-wrap gap-5'>
+            <input
               type="text"
               id="mobileNumber"
               placeholder="Mobile Number"
@@ -71,10 +91,9 @@ const DonorProfile = () => {
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
-            
           </div>
-          <div className='w-full flex flex-wrap gap-5' >
-          <input
+          <div className='w-full flex flex-wrap gap-5'>
+            <input
               type="email"
               id="email"
               placeholder="Email"
@@ -82,9 +101,9 @@ const DonorProfile = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-3 py-2 w-full rounded-md border border-gray-400"
               required
-            /></div>
+            />
+          </div>
           <div className='w-full flex flex-wrap gap-5'>
-          
             <input
               type="text"
               id="province"
@@ -95,11 +114,7 @@ const DonorProfile = () => {
               required
             />
           </div>
-          
-            
-          <div className='w-full flex flex-row  gap-5'>
-            
-            <div>
+          <div className='w-full flex flex-row gap-5'>
             <input
               type="text"
               id="district"
@@ -108,8 +123,7 @@ const DonorProfile = () => {
               onChange={(e) => setDistrict(e.target.value)}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
-            /></div>
-            <div>
+            />
             <input
               type="text"
               id="sector"
@@ -118,7 +132,7 @@ const DonorProfile = () => {
               onChange={(e) => setSector(e.target.value)}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
-            /></div>
+            />
           </div>
           <div className='w-full flex flex-row flex-wrap gap-5'>
             <input
@@ -147,8 +161,8 @@ const DonorProfile = () => {
               required
             >
               <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
               <option value="other">Other</option>
             </select>
             <input
@@ -161,7 +175,6 @@ const DonorProfile = () => {
               required
             />
           </div>
-    
           <button type="submit" className="ml-[10%] bg-red-600 mx-9 py-2 rounded-md text-white w-full">
             Donate 
           </button>

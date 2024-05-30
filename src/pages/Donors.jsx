@@ -13,11 +13,11 @@ const Donors = () => {
 
   const fetchDonors = async () => {
     try {
-      const response = await axios.get('https://blood-link-be.onrender.com/api/donor/getDonor');
-      if (Array.isArray(response.data)) {
-        setDonors(response.data);
+      const response = await axios.get('https://blood-link-be.onrender.com/api/donor/getAllDonor');
+      if (response.data && Array.isArray(response.data.appointments)) {
+        setDonors(response.data.appointments);
       } else {
-        throw new Error('API response is not an array');
+        throw new Error('API response is not in the expected format');
       }
       setLoading(false);
     } catch (error) {
@@ -29,7 +29,7 @@ const Donors = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://blood-link-be.onrender.com/api/donor/deleteDonor/${id}`);
-      setDonors(donors.filter(donor => donor.id !== id)); // Update the state to remove the deleted donor
+      setDonors(donors.filter(donor => donor._id !== id)); // Update the state to remove the deleted donor
     } catch (error) {
       console.error("Error deleting donor:", error);
     }
@@ -42,16 +42,26 @@ const Donors = () => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://blood-link-be.onrender.com/api/donor/updateDonor/${selectedDonor.id}`, {
+      const response = await axios.put(`https://blood-link-be.onrender.com/api/donor/updateDonor/${selectedDonor._id}`, {
         fullName: selectedDonor.fullName,
+        nationalID: selectedDonor.nationalID,
         bloodGroup: selectedDonor.bloodGroup,
         mobileNumber: selectedDonor.mobileNumber,
+        province: selectedDonor.province,
+        district: selectedDonor.district,
+        sector: selectedDonor.sector,
         createdAt: selectedDonor.createdAt,
+        age: selectedDonor.age,
+        weight: selectedDonor.weight,
+        gender: selectedDonor.gender,
+        email: selectedDonor.email,
+        lastDonationDate: selectedDonor.lastDonationDate
       });
-      fetchDonors(); // Refresh the donors list
-      setSelectedDonor(null); // Close the modal
+      console.log("Update response:", response.data);
+      fetchDonors(); 
+      setSelectedDonor(null); 
     } catch (error) {
-      console.error("Error updating donor:", error);
+      console.error("Error updating donor:", error.response ? error.response.data : error.message);
     }
   };
 
@@ -72,10 +82,16 @@ const Donors = () => {
             <h2 className="text-lg font-semibold mb-2">{donor.fullName}</h2>
             <p className="text-gray-600 mb-2"><span className="font-semibold">Blood Type:</span> {donor.bloodGroup}</p>
             <p className="text-gray-600 mb-2"><span className="font-semibold">Contact:</span> {donor.mobileNumber}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Email:</span> {donor.email}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">National ID:</span> {donor.nationalID}</p>
             <p className="text-gray-600 mb-2"><span className="font-semibold">Province:</span> {donor.province}</p>
             <p className="text-gray-600 mb-2"><span className="font-semibold">District:</span> {donor.district}</p>
             <p className="text-gray-600 mb-2"><span className="font-semibold">Sector:</span> {donor.sector}</p>
-            <p className="text-gray-600 mb-2"><span className="font-semibold">Last Donation Date:</span> {new Date(donor.createdAt).toLocaleDateString()}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Age:</span> {donor.age}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Weight:</span> {donor.weight}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Gender:</span> {donor.gender}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Registration Date:</span> {new Date(donor.createdAt).toLocaleDateString()}</p>
+            <p className="text-gray-600 mb-2"><span className="font-semibold">Last Donation Date:</span> {donor.lastDonationDate ? new Date(donor.lastDonationDate).toLocaleDateString() : 'N/A'}</p>
             <div className="flex justify-end">
               <button 
                 className='bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-700' 
@@ -137,15 +153,98 @@ const Donors = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="createdAt" className="block text-gray-700">Last Donation Date</label>
+                <label htmlFor="province" className="block text-gray-700">Province</label>
                 <input
-                  type="date"
-                  id="createdAt"
-                  name="createdAt"
-                  value={new Date(selectedDonor.createdAt).toISOString().substr(0, 10)}
+                  type="text"
+                  id="province"
+                  name="province"
+                  value={selectedDonor.province}
                   onChange={handleInputChange}
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
                   required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="district" className="block text-gray-700">District</label>
+                <input
+                  type="text"
+                  id="district"
+                  name="district"
+                  value={selectedDonor.district}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="sector" className="block text-gray-700">Sector</label>
+                <input
+                  type="text"
+                  id="sector"
+                  name="sector"
+                  value={selectedDonor.sector}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="age" className="block text-gray-700">Age</label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  value={selectedDonor.age}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="weight" className="block text-gray-700">Weight</label>
+                <input
+                  type="number"
+                  id="weight"
+                  name="weight"
+                  value={selectedDonor.weight}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="gender" className="block text-gray-700">Gender</label>
+                <input
+                  type="text"
+                  id="gender"
+                  name="gender"
+                  value={selectedDonor.gender}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-gray-700">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={selectedDonor.email}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="lastDonationDate" className="block text-gray-700">Last Donation Date</label>
+                <input
+                  type="date"
+                  id="lastDonationDate"
+                  name="lastDonationDate"
+                  value={selectedDonor.lastDonationDate ? new Date(selectedDonor.lastDonationDate).toISOString().split('T')[0] : ''}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
                 />
               </div>
               <div className="flex justify-end space-x-4">
@@ -158,18 +257,17 @@ const Donors = () => {
                 <button 
                   type="button" 
                   className="bg-gray-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-gray-700" 
-                    onClick={() => setSelectedDonor(null)}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </form>
+                  onClick={() => setSelectedDonor(null)}
+                >
+                  Cancel
+                </button>
               </div>
-            </div>
-          )}
+            </form>
+          </div>
         </div>
-      );
-    };
-    
-    export default Donors;
-    
+      )}
+    </div>
+  );
+};
+
+export default Donors;

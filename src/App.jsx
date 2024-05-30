@@ -31,6 +31,7 @@ import ExistingRequest from './hos-dashboard/hpages/ExistingRequest'
 import BloodRequest from './hos-dashboard/hpages/BloodRequest'
 // import  HMessages from './hos-dashboard/hpages/HMessages'
 import ConfirmNewPass from './pages/ConfirmNewPass';
+import AddHospital from './pages/AddHospital';
 
 
 const App = () => {
@@ -66,6 +67,7 @@ const App = () => {
           <Route path="/donation" element={<Donation />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="donors" element={<Donors />} />
+          <Route path="/AddHospital" element={<AddHospital/>}/>
         </Route>
               
 

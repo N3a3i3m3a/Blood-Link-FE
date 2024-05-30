@@ -36,7 +36,7 @@ const Home = () => {
   }, [currentIndex]);
 
   return (
-    <div className='max-w-[1400px] w-full mx-auto py-16 px-4'>
+    <div className=' w-full mx-auto py-16 px-4'>
      
       <div className="mt-[64px] overflow-y-auto h-[calc(92vh-64px)] rounded-2xl bg-center bg-cover duration-500 md:mr-0 sm:mr-0 relative">
         {/* Slide Container */}

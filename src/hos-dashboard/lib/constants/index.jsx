@@ -1,8 +1,8 @@
 import {
 	HiOutlineViewGrid,
 	HiOutlineUsers,
-	HiOutlineDocumentText,
-	HiOutlineAnnotation,
+	// HiOutlineDocumentText,
+	// HiOutlineAnnotation,
 	HiOutlineQuestionMarkCircle,
 	HiOutlineCog
 } from 'react-icons/hi'
@@ -22,12 +22,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/bloodrequest',
 		icon: <BiSolidDonateBlood />
 	},
-	// {
-	// 	key: 'notification',
-	// 	label: 'Notification',
-	// 	path: '/notification',
-	// 	icon: <FaHospital />
-	// },
+	
 	{
 		key: 'requests',
 		label: 'Requests',

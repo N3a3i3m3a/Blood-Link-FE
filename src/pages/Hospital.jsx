@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Hospital = () => {
   const [hospitals, setHospitals] = useState([]);
@@ -46,27 +47,6 @@ const Hospital = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('https://blood-link-be.onrender.com/api/hospital/add', newHospital);
-      setHospitals([...hospitals, response.data]);
-      setNewHospital({
-        name: '',
-        email: '',
-        phone: '',
-        hospitalCode: '',
-        province: '',
-        district: '',
-        sector: '',
-        role: '',
-        status: '',
-      });
-    } catch (err) {
-      console.error('Error adding hospital:', err); // Log the error
-      setError(err.message);
-    }
-  };
 
   const handleDelete = async (id) => {
     try {
@@ -92,124 +72,14 @@ const Hospital = () => {
 
   return (
     <div className="container mx-auto px-4">
-      <h1 className="text-2xl font-bold mb-4">List of Hospitals</h1>
-
-      {/* Add New Hospital Form */}
-      <div className="bg-white p-4 rounded-lg shadow-md mb-6">
-        <h2 className="text-lg font-semibold mb-2">Add New Hospital</h2>
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Name</label>
-            <input
-              type="text"
-              name="name"
-              value={newHospital.name}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md text-sm w-full"
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={newHospital.email}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md text-sm w-full"
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Phone</label>
-            <input
-              type="tel"
-              name="phone"
-              value={newHospital.phone}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md text-sm w-full"
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Hospital Code</label>
-            <input
-              type="text"
-              name="hospitalCode"
-              value={newHospital.hospitalCode}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md text-sm w-full"
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Province</label>
-            <input
-              type="text"
-              name="province"
-              value={newHospital.province}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md text-sm w-full"
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">District</label>
-            <input
-              type="text"
-              name="district"
-              value={newHospital.district}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md text-sm w-full"
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Sector</label>
-            <input
-              type="text"
-              name="sector"
-              value={newHospital.sector}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md text-sm w-full"
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Role</label>
-            <input
-              type="text"
-              name="role"
-              value={newHospital.role}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md text-sm w-full"
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Status</label>
-            <input
-              type="text"
-              name="status"
-              value={newHospital.status}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md text-sm w-full"
-              required
-            />
-          </div>
-          <div className="col-span-full flex justify-center">
-            <button
-              type="submit"
-              className="
-              py-2 px-4 bg-red-500 text-white rounded-md text-sm hover:bg-blue-600 max-w-xs w-full"
-              >
-                Add Hospital
-              </button>
-            </div>
-          </form>
-        </div>
-  
-        {/* Hospitals List */}
+      <div className='flex flex-row justify-between my-10'>
+      <div>
+      <h1 className="text-4xl font-bold mb-4">List of Hospitals</h1>
+      </div>
+      <div>
+      <Link to="/AddHospital"><button className='py-2 px-4 bg-red-500 text-white rounded-md text-sm hover:bg-red-600'>Add Hospital</button></Link>
+      </div>
+      </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.isArray(hospitals) && hospitals.length > 0 ? (
             hospitals.map((hospital) => (
