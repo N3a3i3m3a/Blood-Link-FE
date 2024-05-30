@@ -3,6 +3,7 @@ import { IoBagHandle, IoPieChart, IoPeople, IoCart } from 'react-icons/io5';
 import axios from 'axios';
 
 export default function DashboardStatsGrid() {
+  const [confirmedCount, setConfirmedCount] = useState(0);
   const [donorsCount, setDonorsCount] = useState(0);
   const [hospitalsCount, setHospitalsCount] = useState(0);
   const [requestsCount, setRequestsCount] = useState(0);
@@ -12,13 +13,15 @@ export default function DashboardStatsGrid() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const donorsResponse = await axios.get('https://blood-link-be.onrender.com/api/donor/getDonor');
-        const hospitalsResponse = await axios.get('https://blood-link-be.onrender.com/api/hospital/list');
-        const requestsResponse = await axios.get('https://blood-link-be.onrender.com/api/hospital/listOfBloodRequest');
+        const confirmedResponse = await axios.get('https://blood-link-be.onrender.com/api/appointment/getComfirmedAppointments');
+        const donorsResponse = await axios.get('https://blood-link-be.onrender.com/api/donor/count');
+        const hospitalsResponse = await axios.get('https://blood-link-be.onrender.com/api/hospital/count');
+        const requestsResponse = await axios.get('https://blood-link-be.onrender.com/api/hospital/bloodRequestCount');
 
-        setDonorsCount(donorsResponse.data.number_of_donors);
-        setHospitalsCount(hospitalsResponse.data.number_of_hospitals);
-        setRequestsCount(requestsResponse.data.number_of_requests);
+        setConfirmedCount(confirmedResponse.data.numberOfConfirmedAppointments);
+        setDonorsCount(donorsResponse.data.numberOfAllDonors);
+        setHospitalsCount(hospitalsResponse.data.numberOfHospitals);
+        setRequestsCount(requestsResponse.data.numberOfRequests);
 
         setLoading(false);
       } catch (err) {
@@ -40,7 +43,7 @@ export default function DashboardStatsGrid() {
   }
 
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-wrap gap-4">
       <BoxWrapper>
         <div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
           <IoBagHandle className="text-2xl text-white" />
@@ -48,7 +51,7 @@ export default function DashboardStatsGrid() {
         <div className="pl-4">
           <span className="text-sm text-gray-500 font-light">Total matched donations</span>
           <div className="flex items-center">
-            <strong className="text-xl text-gray-700 font-semibold">{donorsCount}</strong>
+            <strong className="text-xl text-gray-700 font-semibold">{confirmedCount}</strong>
           </div>
         </div>
       </BoxWrapper>
@@ -59,7 +62,7 @@ export default function DashboardStatsGrid() {
         <div className="pl-4">
           <span className="text-sm text-gray-500 font-light">Total registered donors</span>
           <div className="flex items-center">
-            <strong className="text-xl text-gray-700 font-semibold">{hospitalsCount}</strong>
+            <strong className="text-xl text-gray-700 font-semibold">{donorsCount}</strong>
           </div>
         </div>
       </BoxWrapper>
@@ -90,5 +93,5 @@ export default function DashboardStatsGrid() {
 }
 
 function BoxWrapper({ children }) {
-  return <div className="bg-white rounded-sm p-4 flex-1 border border-gray-200 flex items-center">{children}</div>;
+  return <div className="bg-white rounded-sm p-4 border border-gray-200 flex-1">{children}</div>;
 }

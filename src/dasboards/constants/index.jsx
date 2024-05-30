@@ -36,7 +36,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	},
 	{
 		key: 'donation',
-		label: 'Donation',
+		label: 'Matched Donation',
 		path: '/donation',
 		icon: <HiOutlineDocumentText />
 	},
