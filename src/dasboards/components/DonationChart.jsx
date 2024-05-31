@@ -1,96 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const data = [
-    {
-        name: 'kacyiru',
-        Registers: 4000,
-        Donates: 2400
-    },
-    {
-        name: 'CHUK',
-        Registers: 3000,
-        Donates: 1398
-    },
-    {
-        name: 'MUHIMA',
-        Registers: 2000,
-        Donates: 9800
-    },
-    {
-        name: 'BUTARE',
-        Registers: 2780,
-        Donates: 3908
-    },
-    {
-        name: 'REMERA',
-        Registers: 1890,
-        Donates: 4800
-    },
-    {
-        name: 'BUGESERA',
-        Registers: 2390,
-        Donates: 3800
-    },
-    {
-        name: 'RULINDO',
-        Registers: 3490,
-        Donates: 4300
-    },
-    {
-        name: 'KARONGI',
-        Registers: 2000,
-        Donates: 9800
-    },
-    {
-        name: 'KIBUNGO',
-        Registers: 2780,
-        Donates: 3908
-    },
-    {
-        name: 'CHIB',
-        Registers: 1890,
-        Donates: 4800
-    },
-    {
-        name: 'RBC',
-        Registers: 2390,
-        Donates: 3800
-    },
-    {
-        name: 'NDERA',
-        Registers: 3490,
-        Donates: 4300
-    }
-];
+const DonationChart = () => {
+    const [chartData, setChartData] = useState([]);
 
-export default function DonationChart() {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('https://blood-link-be.onrender.com/api/appointment/getComfirmedAppointments');
+                const confirmedAppointments = response.data.confirmedAppointments;
+
+                // Count the number of confirmed appointments for each hospital
+                const hospitals = {};
+                confirmedAppointments.forEach(appointment => {
+                    const hospitalName = appointment.hospital ? appointment.hospital.name : 'Unknown Hospital';
+                    hospitals[hospitalName] = (hospitals[hospitalName] || 0) + 1;
+                });
+
+                // Convert the counted data into the required format for the bar chart
+                const data = Object.entries(hospitals).map(([name, count]) => ({
+                    name,
+                    Donates: count
+                }));
+
+                setChartData(data);
+            } catch (error) {
+                console.error('Error fetching chart data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
-        <div className="h-[22rem] bg-white p-4 w-[40rem] rounded-sm border border-gray-200 flex flex-col flex-1">
-            <strong className="text-gray-700 font-medium">Donation</strong>
-            <div className="mt-3 w-full flex-1 text-xs">
-                <ResponsiveContainer width="100%" height="100%">
-                    <BarChart
-                        width={500}
-                        height={300}
-                        data={data}
-                        margin={{
-                            top: 20,
-                            right: 10,
-                            left: -10,
-                            bottom: 0
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3 0 0" vertical={false} />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="Donates" fill="#0ea5e9" />
-                        <Bar dataKey="Registers" fill="#ea580c" />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
+        <div className="h-[500px] w-[800px] bg-white p-4 rounded-md border border-gray-300">
+            <h2 className="text-xl font-semibold mb-4">Donation Chart</h2>
+            <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                    data={chartData}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis tickCount={2} />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="Donates" fill="#fca5a5" />
+                </BarChart>
+            </ResponsiveContainer>
         </div>
     );
-}
+};
+
+export default DonationChart;

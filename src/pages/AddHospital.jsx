@@ -40,7 +40,11 @@ const AddHospital = () => {
       setError(null);
     } catch (err) {
       console.error('Error adding hospital:', err);
-      setError(err.message);
+      if (err.response) {
+        setError(err.response.data.message || 'An error occurred while adding the hospital.');
+      } else {
+        setError('An error occurred while adding the hospital.');
+      }
       setSuccess(null);
     }
   };
