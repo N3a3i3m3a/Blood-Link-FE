@@ -12,15 +12,15 @@ export default function Sidebar() {
 
     const handleLogout = () => {
         // Clear user-related data from local storage
-        localStorage.removeItem('userToken'); // Adjust the key as necessary
-        localStorage.removeItem('userInfo'); // Adjust the key as necessary
+        localStorage.removeItem('userToken'); 
+        localStorage.removeItem('userInfo'); 
 
         // Navigate to the login page
-        navigate('/login', { state: { message: 'Logout successful!' } });
+        navigate('/', { state: { message: 'Logout successful!' } });
     };
 
     return (
-        <div className="bg-gray-500 w-60 p-3 flex flex-col">
+        <div className="bg-red-300 w-100 p-3 flex flex-col ">
             <div className="flex items-center gap-2 px-1 py-3">
                 <BiSolidDonateHeart fontSize={24} />
                 <span className="text-neutral-200 text-lg">Hospital</span>

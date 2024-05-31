@@ -16,11 +16,11 @@ export default function Sidebar() {
         localStorage.removeItem('user'); // Example: Clearing user data from local storage
 
         // Navigate to the login page
-        navigate('/login');
+        navigate('/');
     };
 
     return (
-        <div className="bg-red-300 w-60 p-3 flex flex-col gap-7">
+        <div className="bg-red-300 w-60 p-3 flex flex-col gap-7 h-screen ">
             <div className="flex items-center gap-2 px-1 py-3">
                 <BiSolidDonateHeart fontSize={24} />
                 <span className="text-neutral-200 text-lg">Blood Link</span>

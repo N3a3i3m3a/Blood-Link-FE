@@ -1,18 +1,24 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Sidebar from './Sidebar'
-import Header from './Header'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import Header from './Header';
 
 export default function Layout() {
-	return (
-		<div className="bg-neutral-100 h-screen w-screen overflow-hidden flex flex-row">
-			<Sidebar />
-			<div className="flex flex-col flex-1">
-				<Header />
-				<div className="flex-1 p-4 min-h-0 overflow-auto">
-					<Outlet />
-				</div>
-			</div>
-		</div>
-	)
+    return (
+        <div className="bg-neutral-100 min-h-screen w-screen overflow-hidden flex flex-col md:flex-row">
+           
+            <div className="md:w-64 flex-shrink-0">
+                <Sidebar />
+            </div>
+           
+            <div className="flex flex-col flex-1">
+               
+                <Header />
+               
+                <div className="p-4 flex-1 z-10  overflow-auto">
+                    <Outlet />
+                </div>
+            </div>
+        </div>
+    );
 }
