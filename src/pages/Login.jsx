@@ -42,6 +42,8 @@ const Login = () => {
       );
 
       console.log(response.data);
+      const id=response.data.user.id
+      const getId= localStorage.setItem("id", id)
       if (response.status === 200) {
         setSuccessMessage("Login successful!");
         setErrorMessage("");
