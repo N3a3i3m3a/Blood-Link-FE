@@ -1,14 +1,32 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const RequestBlood = () => {
   const [emergencyBloodType, setEmergencyBloodType] = useState('');
   const [hospital, setHospital] = useState('');
   const [quantity, setQuantity] = useState('');
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(`Requesting ${quantity} units of ${emergencyBloodType} blood for ${hospital}`);
+    
+    const requestData = {
+      emergencyBloodType,
+      hospital,
+      quantity: parseInt(quantity, 10) // Ensure quantity is an integer
+    };
+
+    try {
+      const response = await axios.post('https://blood-link-be.onrender.com/api/hospital/bloodRequest', requestData);
+      console.log('Request successful:', response.data);
+      setSuccessMessage('Blood request submitted successfully!');
+      setError(null);
+    } catch (err) {
+      console.error('Error submitting request:', err);
+      setError('Failed to submit blood request. Please try again.');
+      setSuccessMessage('');
+    }
   };
 
   return (
@@ -54,6 +72,8 @@ const RequestBlood = () => {
             Request Blood
           </button>
         </form>
+        {error && <div className="text-red-500 mt-3">{error}</div>}
+        {successMessage && <div className="text-green-500 mt-3">{successMessage}</div>}
       </div>
     </section>
   );

@@ -30,7 +30,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	},
 	{
 		key: 'request',
-		label: 'Requests',
+		label: 'Blood Requests',
 		path: '/requests',
 		icon: <HiOutlineUsers />
 	},

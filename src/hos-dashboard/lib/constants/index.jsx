@@ -18,17 +18,17 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	},
 	{
 		key: 'blood-request',
-		label: 'Blood Request',
+		label: 'Blood Requests',
 		path: '/bloodrequest',
 		icon: <BiSolidDonateBlood />
 	},
 	
-	// {
-	// 	key: 'requests',
-	// 	label: 'Requests',
-	// 	path: '/requestss',
-	// 	icon: <HiOutlineUsers />
-	// },
+	{
+		key: 'requests',
+		label: 'Recent appointments',
+		path: '/RecentAppointments',
+		icon: <HiOutlineUsers />
+	},
 	// {
 	// 	key: 'messages',
 	// 	label: 'Messages',

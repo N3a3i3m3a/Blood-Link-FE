@@ -42,6 +42,10 @@ const Login = () => {
       );
 
       console.log(response.data);
+      const id = response.data.user.id;
+      const hospitalId = response.data.user.hospital
+      localStorage.setItem("id", id);
+      localStorage.setItem("hospitalId", hospitalId);
       if (response.status === 200) {
         setSuccessMessage("Login successful!");
         setErrorMessage("");

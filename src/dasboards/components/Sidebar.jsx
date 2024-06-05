@@ -12,15 +12,13 @@ export default function Sidebar() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Clear user data from local storage or context
-        localStorage.removeItem('user'); // Example: Clearing user data from local storage
+        localStorage.removeItem('user'); 
 
-        // Navigate to the login page
         navigate('/');
     };
 
     return (
-        <div className="bg-red-300 w-60 p-3 flex flex-col gap-7 h-screen ">
+        <div className="bg-red-300 h-screen w-60 p-3 flex flex-col gap-7">
             <div className="flex items-center gap-2 px-1 py-3">
                 <BiSolidDonateHeart fontSize={24} />
                 <span className="text-neutral-200 text-lg">Blood Link</span>
