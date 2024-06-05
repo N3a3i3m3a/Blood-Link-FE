@@ -29,7 +29,7 @@ import HLayout from './hos-dashboard/components/shared/HLayout'
 import HDashboard from './hos-dashboard/hpages/HDashboard'
 // import ExistingRequest from './hos-dashboard/hpages/ExistingRequest'
 import BloodRequest from './hos-dashboard/hpages/BloodRequest'
-// import  HMessages from './hos-dashboard/hpages/HMessages'
+import RecentAppointments from './hos-dashboard/hpages/RecentAppointments'
 import ConfirmNewPass from './pages/ConfirmNewPass';
 import AddHospital from './pages/AddHospital';
 
@@ -51,7 +51,7 @@ const App = () => {
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/Resetpass" element={<Resetpass />} />
           <Route path="/OTP" element={<OTP />} />
-          <Route path="/RequestBlood" element={<RequestBlood />} />
+          
           <Route path="/BookAppointment" element={<BookAppointment />} />
           <Route path="/ConfirmNewPassword" element={<ConfirmNewPass/>} />
           <Route path="/DonorProfile" element={<DonorProfile/>} />
@@ -72,11 +72,11 @@ const App = () => {
               
 
         <Route element={<HLayout />}>
+                    <Route path="/RequestBlood" element={<RequestBlood />} />
                     <Route path="/HDashboard" element={<HDashboard />} />
                     <Route path="bloodrequest" element={<BloodRequest />} />
-                    {/* <Route path="/requestss" element={<ExistingRequest/>}/> */}
-                    {/* <Route path="/notification" element={<Notifications />} /> */}
-                {/* <Route path="/Hmessages" element={<HMessages />} /> */}
+                    <Route path="/RecentAppointments" element={<RecentAppointments/>}/>
+                   
                 <Route path="/p" element={<Notification />} />
                 </Route>
       </Routes>
