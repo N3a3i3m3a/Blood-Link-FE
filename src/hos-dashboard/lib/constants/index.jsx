@@ -23,12 +23,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <BiSolidDonateBlood />
 	},
 	
-	{
-		key: 'requests',
-		label: 'Requests',
-		path: '/requestss',
-		icon: <HiOutlineUsers />
-	},
+	// {
+	// 	key: 'requests',
+	// 	label: 'Requests',
+	// 	path: '/requestss',
+	// 	icon: <HiOutlineUsers />
+	// },
 	// {
 	// 	key: 'messages',
 	// 	label: 'Messages',
