@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const RequestBlood = () => {
@@ -7,6 +7,13 @@ const RequestBlood = () => {
   const [quantity, setQuantity] = useState('');
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
+
+  useEffect(() => {
+    const hospitalId = localStorage.getItem("hospitalId");
+    if (hospitalId) {
+      setHospital(hospitalId);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +37,7 @@ const RequestBlood = () => {
   };
 
   return (
-    <section className='h-fit flex flex-col items-center ml-20 justify-center bg-white p-8 shadow-md'>
+    <section className='h-fit flex flex-col items-center mx-20 justify-center bg-white p-8 shadow-md'>
       <div className='rounded'>
         <h1 className="text-2xl text-gray-500 font-bold">REQUEST BLOOD</h1>
         <h2 className='my-3'>Please enter the details for the blood request</h2>
@@ -55,6 +62,7 @@ const RequestBlood = () => {
               onChange={(e) => setHospital(e.target.value)}
               className="px-3 py-2 rounded-md border w-full border-gray-400"
               required
+              readOnly // Make the input read-only to prevent user modification
             />
           </div>
           <div className='w-full'>

@@ -27,7 +27,7 @@ const Messages = () => {
 
   const deleteMessage = async (id) => {
     try {
-      await axios.delete(`https://blood-link-be.onrender.com/api/contact-us/deleteMessage/${id}`); // Adjust the URL to your API endpoint
+      await axios.delete(`https://blood-link-be.onrender.com/api/contact-us/deleteMessage`); // Adjust the URL to your API endpoint
       setMessages(messages.filter(message => message.id !== id));
     } catch (error) {
       setError(error);
