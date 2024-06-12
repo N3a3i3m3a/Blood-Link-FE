@@ -1,65 +1,140 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Line, Bar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js';
+
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const HDashboard = () => {
-    const [appointmentsData, setAppointmentsData] = useState([]);
-    const [requestsData, setRequestsData] = useState([]);
-    const [error, setError] = useState(null);
-    const hospitalId = localStorage.getItem("hospitalId"); // Assume hospital ID is stored in local storage
+    const [appointments, setAppointments] = useState([]);
+    const [requests, setRequests] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const hospitalId = localStorage.getItem("hospitalId");
+
+                if (!hospitalId) {
+                    throw new Error("No hospital ID found in local storage.");
+                }
+
                 const [appointmentsResponse, requestsResponse] = await Promise.all([
                     axios.get(`https://blood-link-be.onrender.com/api/appointment/getAppointmentsOfAHospital/${hospitalId}`),
                     axios.get(`https://blood-link-be.onrender.com/api/hospital/onehospitalRequests/${hospitalId}`)
                 ]);
 
-                setAppointmentsData(appointmentsResponse.data.appointments);
-                setRequestsData(requestsResponse.data.requests);
+                setAppointments(appointmentsResponse.data.appointments);
+                setRequests(requestsResponse.data.requests);
             } catch (err) {
                 console.error('Error fetching data:', err);
-                setError('Failed to fetch data. Please try again later.');
             }
         };
 
         fetchData();
-    }, [hospitalId]);
+    }, []);
 
-    const formatChartData = (data, label) => {
-        const labels = data.map(item => new Date(item.createdAt).toLocaleDateString());
-        const values = data.map(item => 1); // Each item represents a single event
-
-        return {
-            labels,
-            datasets: [{
-                label,
-                data: values,
-                fill: false,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
-            }]
-        };
+    const bloodTypes = {
+        'A-': 'rgba(255, 99, 132, 0.6)',
+        'A+': 'rgba(54, 162, 235, 0.6)',
+        'B-': 'rgba(255, 206, 86, 0.6)',
+        'B+': 'rgba(75, 192, 192, 0.6)',
+        'AB-': 'rgba(153, 102, 255, 0.6)',
+        'AB+': 'rgba(255, 159, 64, 0.6)',
+        'O-': 'rgba(255, 99, 132, 0.6)',
+        'O+': 'rgba(54, 162, 235, 0.6)',
     };
 
-    const appointmentsChartData = formatChartData(appointmentsData, 'Appointments');
-    const requestsChartData = formatChartData(requestsData, 'Blood Requests');
+    const appointmentChartData = {
+        labels: appointments.map(appointment => new Date(appointment.date).toLocaleDateString()),
+        datasets: Object.values(appointments.reduce((acc, appointment) => {
+            const date = new Date(appointment.date).toLocaleDateString();
+            const bloodGroup = appointment.donor.bloodGroup;
+            if (!acc[date]) {
+                acc[date] = { [bloodGroup]: 1 };
+            } else {
+                if (!acc[date][bloodGroup]) {
+                    acc[date][bloodGroup] = 1;
+                } else {
+                    acc[date][bloodGroup]++;
+                }
+            }
+            return acc;
+        }, {})).map(data => ({
+            label: Object.keys(data).join(', '),
+            data: Object.values(data),
+            backgroundColor: Object.keys(data).map(type => bloodTypes[type]),
+        })),
+    };
+
+    const requestChartData = {
+        labels: requests.map(request => new Date(request.createdAt).toLocaleDateString()),
+        datasets: Object.values(requests.reduce((acc, request) => {
+            const date = new Date(request.createdAt).toLocaleDateString();
+            const bloodType = request.emergencyBloodType;
+            if (!acc[date]) {
+                acc[date] = { [bloodType]: request.quantity };
+            } else {
+                if (!acc[date][bloodType]) {
+                    acc[date][bloodType] = request.quantity;
+                } else {
+                    acc[date][bloodType] += request.quantity;
+                }
+            }
+            return acc;
+        }, {})).map(data => ({
+            label: Object.keys(data).join(', '),
+            data: Object.values(data),
+            backgroundColor: Object.keys(data).map(type => bloodTypes[type]),
+        })),
+    };
+
+    const legendOpts = {
+        display: true,
+        position: 'bottom',
+        labels: {
+            generateLabels: function(chart) {
+                return Object.keys(bloodTypes).map(function(bloodType) {
+                    return {
+                        text: bloodType,
+                        fillStyle: bloodTypes[bloodType],
+                        strokeStyle: bloodTypes[bloodType],
+                        lineWidth: 1,
+                        hidden: false,
+                        index: bloodType
+                    };
+                });
+            }
+        }
+    };
 
     return (
         <div className="container mx-auto px-4">
-            {/* <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-            {error && <div className="text-red-500">{error}</div>}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <h2 className="text-xl font-semibold mb-2">Recent Appointments</h2>
-                    <Line data={appointmentsChartData} />
+            <div className="mb-8">
+                <h2 className="text-xl font-bold mb-2">Recent Appointments</h2>
+                {appointments.length > 0 ? <Bar data={appointmentChartData} options={{ plugins: { legend: legendOpts } }} /> : <p>Loading appointments...</p>}
+            </div>
+            <div>
+                <div className='flex flex-row justify-around mb-4'>
+                    <div><h2 className="text-xl font-bold">Our Blood Requests</h2></div>
                 </div>
-                <div>
-                    <h2 className="text-xl font-semibold mb-2">Blood Requests</h2>
-                    <Bar data={requestsChartData} />
-                </div>
-            </div> */}
+                {requests.length > 0 ? <Bar data={requestChartData} options={{ plugins: { legend: legendOpts } }} /> : <p>Loading requests...</p>}
+            </div>
         </div>
     );
 };

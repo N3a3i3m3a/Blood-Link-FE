@@ -4,11 +4,17 @@ import axios from 'axios';
 const RecentAppointments = () => {
     const [appointments, setAppointments] = useState([]);
     const [error, setError] = useState(null);
-    const hospitalId = "66436265140815c7980ab47f"; // Replace with the actual hospital ID
 
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
+                const hospitalId = localStorage.getItem("hospitalId");
+
+                if (!hospitalId) {
+                    setError("No hospital ID found in local storage.");
+                    return;
+                }
+
                 const response = await axios.get(`https://blood-link-be.onrender.com/api/appointment/getAppointmentsOfAHospital/${hospitalId}`);
                 setAppointments(response.data.appointments);
             } catch (err) {
@@ -18,7 +24,7 @@ const RecentAppointments = () => {
         };
 
         fetchAppointments();
-    }, [hospitalId]);
+    }, []);
 
     return (
         <div className="container mx-auto px-4">
