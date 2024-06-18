@@ -7,7 +7,7 @@ import {
 	HiOutlineCog
 } from 'react-icons/hi'
 import { BiSolidDonateBlood } from "react-icons/bi";
-import { FaHospital } from "react-icons/fa";
+// import { FaHospital } from "react-icons/fa";
 
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
@@ -38,16 +38,16 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
-	{
-		key: 'settings',
-		label: 'Settings',
-		path: '/settings',
-		icon: <HiOutlineCog />
-	},
-	{
-		key: 'support',
-		label: 'Help & Support',
-		path: '/support',
-		icon: <HiOutlineQuestionMarkCircle />
-	}
+	// {
+	// 	key: 'settings',
+	// 	label: 'Settings',
+	// 	path: '/settings',
+	// 	icon: <HiOutlineCog />
+	// },
+	// {
+	// 	key: 'support',
+	// 	label: 'Help & Support',
+	// 	path: '/support',
+	// 	icon: <HiOutlineQuestionMarkCircle />
+	// }
 ]

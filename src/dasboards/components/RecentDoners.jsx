@@ -52,17 +52,13 @@ const RecentDoners = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap" data-label="Hospital">
                   <div>
-                    <p><strong></strong> {appointment.hospital ? appointment.hospital.name : 'No hospital name assigned'}</p>
-                    <p><strong></strong> {appointment.hospital ? appointment.hospital.email : 'No hospital email assigned'}</p>
-                    <p><strong></strong> {appointment.hospital ? appointment.hospital.phone : 'No hospital phone assigned'}</p>
+                    <p><strong>Name:</strong> {appointment.hospital ? appointment.hospital.name : 'No hospital name assigned'}</p>
+                    <p><strong>Email:</strong> {appointment.hospital ? appointment.hospital.email : 'No hospital email assigned'}</p>
+                    <p><strong>Phone:</strong> {appointment.hospital ? appointment.hospital.phone : 'No hospital phone assigned'}</p>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap" data-label="Date">{new Date(appointment.date).toLocaleDateString()}</td>
-                <td className="px-6 py-4 whitespace-nowrap" data-label="Time">
-                  <div>
-                    <p><strong></strong> {appointment.time}</p>
-                  </div>
-                </td>
+                <td className="px-6 py-4 whitespace-nowrap" data-label="Time">{appointment.time}</td>
                 <td className="px-6 py-4 whitespace-nowrap" data-label="Location">
                   <div>
                     <p><strong>Sector:</strong> {appointment.hospital?.sector}</p>

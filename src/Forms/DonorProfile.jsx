@@ -9,14 +9,16 @@ const DonorProfile = () => {
   const [province, setProvince] = useState('');
   const [district, setDistrict] = useState('');
   const [sector, setSector] = useState('');
-  const [BloodGroup, setBloodGroup] = useState('');
+  const [bloodGroup, setBloodGroup] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
   const [weight, setWeight] = useState('');
   const [donationAvailability, setDonationAvailability] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // For displaying errors to the user
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form submitted'); // Log to confirm form submission
     const donorData = {
       fullName,
       mobileNumber,
@@ -25,12 +27,14 @@ const DonorProfile = () => {
       province,
       district,
       sector,
-      bloodGroup: BloodGroup,
+      bloodGroup,
       age,
       gender,
       weight,
       donationAvailability,
     };
+
+    console.log('Donor Data:', donorData); // Log the data to be sent
 
     try {
       const response = await axios.post('https://blood-link-be.onrender.com/api/donor/create', donorData);
@@ -48,8 +52,26 @@ const DonorProfile = () => {
       setGender('');
       setWeight('');
       setDonationAvailability('');
+      setErrorMessage(''); // Clear any previous error messages
     } catch (error) {
       console.error('Error creating donor:', error.response ? error.response.data : error.message);
+      // Detailed logging
+      if (error.response) {
+        console.error('Status:', error.response.status);
+        console.error('Data:', error.response.data);
+        console.error('Headers:', error.response.headers);
+        if (error.response.data && error.response.data.error.includes('duplicate key error')) {
+          setErrorMessage('This email is already registered. Please use a different email.');
+        } else {
+          setErrorMessage('An error occurred. Please try again.');
+        }
+      } else if (error.request) {
+        console.error('Request:', error.request);
+        setErrorMessage('No response from the server. Please check your network connection.');
+      } else {
+        console.error('Error:', error.message);
+        setErrorMessage('An unexpected error occurred. Please try again.');
+      }
     }
   };
 
@@ -59,6 +81,7 @@ const DonorProfile = () => {
         <h1 className="text-2xl text-gray-500 font-bold">CREATE YOUR PROFILE</h1>
         <h2 className='my-1'>Please fill in your details into this form</h2>
         <form className="flex flex-col gap-5 p-7 w-full items-center" onSubmit={handleSubmit}>
+          {errorMessage && <div className="text-red-500">{errorMessage}</div>}
           <div className='w-full flex flex-wrap'>
             <input
               type="text"
@@ -137,9 +160,9 @@ const DonorProfile = () => {
           <div className='w-full flex flex-row flex-wrap gap-5'>
             <input
               type="text"
-              id="BloodGroup"
+              id="bloodGroup"
               placeholder="Blood Group"
-              value={BloodGroup}
+              value={bloodGroup}
               onChange={(e) => setBloodGroup(e.target.value)}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
@@ -163,7 +186,7 @@ const DonorProfile = () => {
               <option value="">Select Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
-              <option value="other">Other</option>
+              <option value="Other">Other</option>
             </select>
             <input
               type="number"

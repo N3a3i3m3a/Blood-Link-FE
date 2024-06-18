@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -43,7 +45,7 @@ const Login = () => {
 
       console.log(response.data);
       const id = response.data.user.id;
-      const hospitalId = response.data.user.hospital
+      const hospitalId = response.data.user.hospital;
       localStorage.setItem("id", id);
       localStorage.setItem("hospitalId", hospitalId);
       if (response.status === 200) {
@@ -75,6 +77,10 @@ const Login = () => {
     return emailRegex.test(email);
   };
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
     <div className='w-full h-fit flex flex-col items-center mt-20 ml-16 justify-center bg-white md:w-full sm:w-full p-8 shadow-md'>
       <div className='w-full justify-center'>
@@ -91,15 +97,21 @@ const Login = () => {
             />
             {emailError && <p className="text-blue-700">{emailError}</p>}
           </div>
-          <div>
+          <div className="relative">
             <input
-              type="password"
+              type={passwordVisible ? "text" : "password"}
               id="password"
               placeholder="Password"
-              className="px-3 py-2 rounded-md w-full border border-gray-400 w"
+              className="px-3 py-2 rounded-md w-full border border-gray-400"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <span
+              className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+              onClick={togglePasswordVisibility}
+            >
+              {passwordVisible ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+            </span>
             {passwordError && <p className="text-blue-700">{passwordError}</p>}
           </div>
           <div>
