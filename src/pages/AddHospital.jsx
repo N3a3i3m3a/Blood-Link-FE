@@ -49,14 +49,14 @@ const AddHospital = () => {
     }
   };
 
-  return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-2xl font-bold mb-4">Add New Hospital</h1>
+  return  (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-3xl bg-white p-8 rounded-lg shadow-md">
+        <h1 className="text-2xl text-center font-bold mb-4">Add New Hospital</h1>
+        
+        {error && <div className="text-center text-red-500 mt-4">Error: {error}</div>}
+        {success && <div className="text-center text-green-500 mt-4">{success}</div>}
 
-      {error && <div className="text-center text-red-500 mt-4">Error: {error}</div>}
-      {success && <div className="text-center text-green-500 mt-4">{success}</div>}
-
-      <div className="bg-white p-4 rounded-lg shadow-md mb-6">
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div className="col-span-1">
             <label className="block text-sm font-medium text-gray-700">Name</label>
@@ -145,6 +145,8 @@ const AddHospital = () => {
           </div>
         </form>
       </div>
+    
+
     </div>
   );
 };

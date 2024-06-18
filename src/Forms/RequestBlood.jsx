@@ -37,11 +37,11 @@ const RequestBlood = () => {
   };
 
   return (
-    <section className='h-fit flex flex-col items-center mx-20 justify-center bg-white p-8 shadow-md'>
-      <div className='rounded'>
+    <div className="h-screen flex justify-center items-center bg-gray-100">
+      <section className='flex flex-col items-center bg-white py-10 px-32 shadow-md rounded'>
         <h1 className="text-2xl text-gray-500 font-bold">REQUEST BLOOD</h1>
         <h2 className='my-3'>Please enter the details for the blood request</h2>
-        <form className="flex flex-col gap-5 p-7 w-full items-center" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-5 w-full items-center" onSubmit={handleSubmit}>
           <div className='w-full'>
             <input
               type="text"
@@ -76,14 +76,14 @@ const RequestBlood = () => {
               required
             />
           </div>
-          <button type="submit" className="ml-[10%] bg-red-600 mx-9 py-2 rounded-md text-white w-full">
+          <button type="submit" className="bg-red-600 py-2 rounded-md text-white w-full">
             Request Blood
           </button>
         </form>
         {error && <div className="text-red-500 mt-3">{error}</div>}
         {successMessage && <div className="text-green-500 mt-3">{successMessage}</div>}
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

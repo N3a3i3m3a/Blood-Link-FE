@@ -36,15 +36,20 @@ const Hospital = () => {
     }
   };
 
-  const handleUpdate = (hospital) => {
-    setSelectedHospital(hospital);
+  const handleUpdate = (id) => {
+    setSelectedHospital(id);
   };
-
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
+
+    if (!id || !id) {
+      console.error('Error updating hospital: selectedHospital or selectedHospital._id is not defined');
+      return;
+    }
+
     try {
       const response = await axios.put(
-        `https://blood-link-be.onrender.com/api/hospital/update/${selectedHospital._id}`,
+        `https://blood-link-be.onrender.com/api/hospital/update/${id}`,
         {
           name: selectedHospital.name,
           email: selectedHospital.email,

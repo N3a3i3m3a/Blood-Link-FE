@@ -79,8 +79,10 @@ const HDashboard = () => {
             label: Object.keys(data).join(', '),
             data: Object.values(data),
             backgroundColor: Object.keys(data).map(type => bloodTypes[type]),
+            barThickness: 100, // Set the bar thickness here
         })),
     };
+    
 
     const requestChartData = {
         labels: requests.map(request => new Date(request.createdAt).toLocaleDateString()),
@@ -124,7 +126,7 @@ const HDashboard = () => {
     };
 
     return (
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto pr-48">
             <div className="mb-8">
                 <h2 className="text-xl font-bold mb-2">Recent Appointments</h2>
                 {appointments.length > 0 ? <Bar data={appointmentChartData} options={{ plugins: { legend: legendOpts } }} /> : <p>Loading appointments...</p>}

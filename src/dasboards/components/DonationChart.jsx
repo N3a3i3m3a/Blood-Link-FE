@@ -34,7 +34,7 @@ const DonationChart = () => {
     }, []);
 
     return (
-        <div className="h-[500px] w-[800px] bg-white p-4 rounded-md border border-gray-300">
+        <div className="bg-white p-4 rounded-md border border-gray-300" style={{ height: '500px', width: '100%', maxWidth: '800px' }}>
             <h2 className="text-xl font-semibold mb-4">Donation Chart</h2>
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart
@@ -43,7 +43,7 @@ const DonationChart = () => {
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis tickCount={2} />
+                    <YAxis domain={[0, 'dataMax']} interval={0} />
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="Donates" fill="#fca5a5" />
