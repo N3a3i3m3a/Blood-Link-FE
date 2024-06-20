@@ -36,7 +36,7 @@ import { DonorProvider } from './Forms/DonorContext'
 
 const App = () => {
   return (
-    <Fragment>
+    <DonorProvider>
     <Router>
       <Routes>
         <Route element={<Layout />}>
@@ -78,18 +78,14 @@ const App = () => {
     
                 </Route>
       </Routes>
-      
-
-    </Router>
-    <DonorProvider>
-    <Router>
       <Routes>
         <Route path="/DonorProfile" element={<DonorProfile />} />
         <Route path="/BookAppointment" element={<BookAppointment />} />
       </Routes>
+      
+
     </Router>
-  </DonorProvider>
-  </Fragment>
+    </DonorProvider>
     
   );
 };
