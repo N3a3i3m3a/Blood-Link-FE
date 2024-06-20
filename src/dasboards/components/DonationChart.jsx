@@ -34,7 +34,7 @@ const DonationChart = () => {
     }, []);
 
     return (
-        <div className="bg-white p-4 rounded-md border border-gray-300" style={{ height: '500px', width: '100%', maxWidth: '800px' }}>
+        <div className="bg-white p-10 rounded-md border border-gray-300 px-10" style={{ height: '500px', width: '100%', maxWidth: '800px' }}>
             <h2 className="text-xl font-semibold mb-4">Donation Chart</h2>
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart

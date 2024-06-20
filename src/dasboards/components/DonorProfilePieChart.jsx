@@ -24,7 +24,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 export default function DonorProfilePieChart() {
 	return (
-		<div className="w-[20rem] h-[31rem] bg-white p-2 rounded-sm border border-gray-200 flex flex-col" >
+		<div className="w-[25rem] h-[31rem] bg-white p-2 rounded-sm border border-gray-200 flex flex-col" >
 			<strong className="text-black font-bold text-xl">Donors' Gender</strong>
 			<div className="mt-3 w-full flex-1 text-xs">
 				<ResponsiveContainer width="100%" height="100%">
