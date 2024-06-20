@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Alayout from './components/Alayout';
@@ -32,10 +32,11 @@ import BloodRequest from './hos-dashboard/hpages/BloodRequest'
 import RecentAppointments from './hos-dashboard/hpages/RecentAppointments'
 import ConfirmNewPass from './pages/ConfirmNewPass';
 import AddHospital from './pages/AddHospital';
-
+import { DonorProvider } from './Forms/DonorContext'
 
 const App = () => {
   return (
+    <Fragment>
     <Router>
       <Routes>
         <Route element={<Layout />}>
@@ -51,10 +52,7 @@ const App = () => {
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/Resetpass" element={<Resetpass />} />
           <Route path="/OTP" element={<OTP />} />
-          
-          <Route path="/BookAppointment" element={<BookAppointment />} />
           <Route path="/ConfirmNewPassword" element={<ConfirmNewPass/>} />
-          <Route path="/DonorProfile" element={<DonorProfile/>} />
         </Route>
         <Route path="/Hospital" element={<Hospital/>}/>
         
@@ -77,12 +75,22 @@ const App = () => {
                     <Route path="bloodrequest" element={<BloodRequest />} />
                     <Route path="/RecentAppointments" element={<RecentAppointments/>}/>
                    
-                <Route path="/p" element={<Notification />} />
+    
                 </Route>
       </Routes>
       
 
     </Router>
+    <DonorProvider>
+    <Router>
+      <Routes>
+        <Route path="/DonorProfile" element={<DonorProfile />} />
+        <Route path="/BookAppointment" element={<BookAppointment />} />
+      </Routes>
+    </Router>
+  </DonorProvider>
+  </Fragment>
+    
   );
 };
 

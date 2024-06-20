@@ -7,9 +7,9 @@ import RecentDoners from '../components/RecentDoners';
 
 export default function ADashboard() {
   return (
-    <div className="flex flex-col gap-4 w-full p-4">
+    <div className="flex flex-col gap-4 w-3xl ">
       <DashboardStatsGrid />
-      <div className="flex flex-row lg:flex-row w-fit gap-4">
+      <div className="flex flex-row  w-full lg:flex-row pr-20 p-5 w-fit gap-20">
         
           <TransactionChart />
         

@@ -37,7 +37,7 @@ export default function Sidebar() {
                     className={classNames(linkClass, 'cursor-pointer text-red-500')} 
                     onClick={handleLogout}
                 >
-                    <span className="text-xl">
+                    <span className="text-xl py-5">
                         <HiOutlineLogout />
                     </span>
                     Logout
