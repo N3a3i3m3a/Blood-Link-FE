@@ -1,57 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { DonorContext } from './DonorContext';
 
 const DonorProfile = () => {
-  const [fullName, setFullName] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [nationalID, setNationalID] = useState('');
-  const [email, setEmail] = useState('');
-  const [province, setProvince] = useState('');
-  const [district, setDistrict] = useState('');
-  const [sector, setSector] = useState('');
-  const [bloodGroup, setBloodGroup] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
-  const [weight, setWeight] = useState('');
+  const { donorProfile, setDonorProfile } = useContext(DonorContext);
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState(''); // Added state for success message
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setDonorProfile((prevProfile) => ({
+      ...prevProfile,
+      [id]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form submitted');
-    const donorData = {
-      fullName,
-      mobileNumber,
-      nationalID,
-      email,
-      province,
-      district,
-      sector,
-      bloodGroup,
-      age,
-      gender,
-      weight,
-    };
-
-    console.log('Donor Data:', donorData);
+    console.log('Donor Data:', donorProfile);
 
     try {
-      const response = await axios.post('https://blood-link-be.onrender.com/api/donor/create', donorData);
+      const response = await axios.post('https://blood-link-be.onrender.com/api/donor/create', donorProfile);
       console.log('Donor created successfully:', response.data);
 
-      // Reset form fields after successful submission
-      setFullName('');
-      setMobileNumber('');
-      setNationalID('');
-      setEmail('');
-      setProvince('');
-      setDistrict('');
-      setSector('');
-      setBloodGroup('');
-      setAge('');
-      setGender('');
-      setWeight('');
-      setErrorMessage(''); // Clear any previous error messages
+      // Clear error messages after successful submission
+      setErrorMessage('');
+      setSuccessMessage('Donor created successfully!'); // Set success message
+      
     } catch (error) {
       console.error('Error creating donor:', error.response ? error.response.data : error.message);
 
@@ -59,7 +37,10 @@ const DonorProfile = () => {
         console.error('Status:', error.response.status);
         console.error('Data:', error.response.data);
         console.error('Headers:', error.response.headers);
-        if (error.response.data && error.response.data.error.includes('duplicate key error')) {
+
+        const errorData = error.response.data;
+
+        if (errorData && errorData.error && errorData.error.includes('duplicate key error')) {
           setErrorMessage('This email is already registered. Please use a different email.');
         } else {
           setErrorMessage('An error occurred. Please try again.');
@@ -71,23 +52,26 @@ const DonorProfile = () => {
         console.error('Error:', error.message);
         setErrorMessage('An unexpected error occurred. Please try again.');
       }
+
+      setSuccessMessage(''); // Clear success message on error
     }
   };
 
   return (
-    <section className='h-fit flex flex-col mt-1 items-center ml-20 justify-center bg-white p-8 shadow-md'>
-      <div className='rounded'>
+    <section className='flex flex-col w-full items-center  bg-white p-20'>
+      <div className='rounded max-w-3xl rounded flex flex-col  items-center justify-center mx-20 p-10 shadow-md'>
         <h1 className="text-2xl text-gray-500 font-bold">REGISTER TO DONATE ANY TIME</h1>
         <h2 className='my-1'>Please, fill in your details into this form</h2>
         <form className="flex flex-col gap-5 p-7 w-full items-center" onSubmit={handleSubmit}>
           {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+          {successMessage && <div className="text-green-500">{successMessage}</div>}
           <div className='w-full flex flex-wrap'>
             <input
               type="text"
               id="fullName"
               placeholder="Full Name"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              value={donorProfile.fullName}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
@@ -97,8 +81,8 @@ const DonorProfile = () => {
               type="text"
               id="mobileNumber"
               placeholder="Mobile Number"
-              value={mobileNumber}
-              onChange={(e) => setMobileNumber(e.target.value)}
+              value={donorProfile.mobileNumber}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
@@ -108,8 +92,8 @@ const DonorProfile = () => {
               type="text"
               id="nationalID"
               placeholder="National ID"
-              value={nationalID}
-              onChange={(e) => setNationalID(e.target.value)}
+              value={donorProfile.nationalID}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
@@ -119,8 +103,8 @@ const DonorProfile = () => {
               type="email"
               id="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={donorProfile.email}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 w-full rounded-md border border-gray-400"
               required
             />
@@ -130,8 +114,8 @@ const DonorProfile = () => {
               type="text"
               id="province"
               placeholder="Province"
-              value={province}
-              onChange={(e) => setProvince(e.target.value)}
+              value={donorProfile.province}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
@@ -141,8 +125,8 @@ const DonorProfile = () => {
               type="text"
               id="district"
               placeholder="District"
-              value={district}
-              onChange={(e) => setDistrict(e.target.value)}
+              value={donorProfile.district}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
@@ -150,8 +134,8 @@ const DonorProfile = () => {
               type="text"
               id="sector"
               placeholder="Sector"
-              value={sector}
-              onChange={(e) => setSector(e.target.value)}
+              value={donorProfile.sector}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
@@ -161,8 +145,8 @@ const DonorProfile = () => {
               type="text"
               id="bloodGroup"
               placeholder="Blood Group"
-              value={bloodGroup}
-              onChange={(e) => setBloodGroup(e.target.value)}
+              value={donorProfile.bloodGroup}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
@@ -170,15 +154,15 @@ const DonorProfile = () => {
               type="number"
               id="age"
               placeholder="Age"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
+              value={donorProfile.age}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
             <select
               id="gender"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
+              value={donorProfile.gender}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             >
@@ -191,16 +175,16 @@ const DonorProfile = () => {
               type="number"
               id="weight"
               placeholder="Weight (kg)"
-              value={weight}
-              onChange={(e) => setWeight(e.target.value)}
+              value={donorProfile.weight}
+              onChange={handleChange}
               className="flex-1 px-3 py-2 rounded-md border border-gray-400"
               required
             />
           </div>
           <button type="submit" className="ml-[10%] bg-red-600 mx-9 py-2 rounded-md text-white w-full">
-            Donate 
+            Donate
           </button>
-          <h1 className='font-semibold'>You need to book appointment?<Link to='/BookAppointment' className='text-red-500'>Click here!</Link></h1>
+          <h1 className='font-semibold'>You need to book appointment?<Link to='/BookAppointment' className='text-red-500'> Click here!</Link></h1>
         </form>
       </div>
     </section>

@@ -14,7 +14,6 @@ const BookAppointment = () => {
         const response = await fetch('https://blood-link-be.onrender.com/api/hospital/namesOfAllHospitals');
         const data = await response.json();
         console.log('Fetched data:', data); // Log the fetched data for debugging
-        // Ensure the data contains the hospitals key and it's an array
         if (data && Array.isArray(data.hospitals)) {
           setHospitals(data.hospitals);
         } else {
@@ -47,17 +46,19 @@ const BookAppointment = () => {
         body: JSON.stringify(appointmentData),
       });
 
+      const result = await response.json();
+
       if (response.ok) {
-        console.log('Appointment created successfully');
+        console.log('Appointment created successfully:', result);
         setMessage('Appointment created successfully!');
-        // Optionally, reset the form or provide feedback to the user
+        // Reset form fields after successful submission
         setDonor('');
         setHospital('');
         setDate('');
         setTime('');
       } else {
-        console.error('Failed to create appointment');
-        setMessage('Failed to create appointment. Please try again.');
+        console.error('Failed to create appointment:', result);
+        setMessage(result.message || 'Failed to create appointment. Please try again.');
       }
     } catch (error) {
       console.error('Error creating appointment:', error);
@@ -68,13 +69,12 @@ const BookAppointment = () => {
   };
 
   return (
-    <section className="h-fit flex flex-col w-full items-center justify-center bg-white p-8 shadow-md">
-      <div className="rounded w-full max-w-lg">
+    <section className=" flex flex-col w-full items-center  bg-white p-20 ">
+      <div className="rounded flex flex-col  items-center my-36 justify-center mx-20 p-10 shadow-md">
         <h1 className="text-2xl text-gray-500 font-bold mb-4">Book Appointment</h1>
-        {/* <h2 className="mb-3">Welcome to our donating page!</h2> */}
         <h2 className="mb-3">Please, fill out the following form</h2>
         <form className="flex flex-col gap-5 p-7 w-full" onSubmit={handleSubmit}>
-          {message && <p className="text-center mb-4 text-red-600">{message}</p>}
+          {message && <p className="text-center mb-4 text-green-500">{message}</p>}
           <div className="w-full">
             <input
               type="text"
@@ -96,7 +96,7 @@ const BookAppointment = () => {
             >
               <option value="" disabled>Select Hospital</option>
               {hospitals.length > 0 ? (
-                hospitals.map((hospital, index) => (
+                hospitals.map((hospital) => (
                   <option key={hospital._id} value={hospital.name}>{hospital.name}</option>
                 ))
               ) : (
