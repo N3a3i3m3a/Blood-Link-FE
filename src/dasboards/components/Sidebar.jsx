@@ -38,7 +38,7 @@ export default function Sidebar() {
                         <SidebarLink key={link.key} link={link} />
                     ))}
                 </div>
-                <div className="flex flex-col gap-0.5 py-14 border-t border-white">
+                <div className="flex flex-col gap-0.5 mt-80 py-5 border-t border-white">
                     {DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((link) => (
                         <SidebarLink key={link.key} link={link} />
                     ))}
@@ -46,7 +46,7 @@ export default function Sidebar() {
                         className={classNames(linkClass, 'cursor-pointer text-red-500')}
                         onClick={handleLogout}
                     >
-                        <span className="text-xl">
+                        <span className="text-xl ">
                             <HiOutlineLogout />
                         </span>
                         Logout

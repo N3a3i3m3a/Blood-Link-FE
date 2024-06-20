@@ -77,8 +77,8 @@ const DonorProfile = () => {
   return (
     <section className='h-fit flex flex-col mt-1 items-center ml-20 justify-center bg-white p-8 shadow-md'>
       <div className='rounded'>
-        <h1 className="text-2xl text-gray-500 font-bold">CREATE YOUR PROFILE</h1>
-        <h2 className='my-1'>Please fill in your details into this form</h2>
+        <h1 className="text-2xl text-gray-500 font-bold">REGISTER TO DONATE ANY TIME</h1>
+        <h2 className='my-1'>Please, fill in your details into this form</h2>
         <form className="flex flex-col gap-5 p-7 w-full items-center" onSubmit={handleSubmit}>
           {errorMessage && <div className="text-red-500">{errorMessage}</div>}
           <div className='w-full flex flex-wrap'>
