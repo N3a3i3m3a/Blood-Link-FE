@@ -51,7 +51,7 @@ const AddHospital = () => {
 
   return  (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-3xl bg-white p-8 rounded-lg shadow-md">
+      <div className="min-w-screen md:ml-60 sm:ml-0 bg-white p-8 rounded-lg shadow-md">
         <h1 className="text-2xl text-center font-bold mb-4">Add New Hospital</h1>
         
         {error && <div className="text-center text-red-500 mt-4">Error: {error}</div>}

@@ -18,15 +18,15 @@ const Requests = () => {
       });
   }, []);
 
-  const handleDelete = (id) => {
-    // Implement delete functionality here
-    console.log('Delete request with ID:', id);
-  };
+  // const handleDelete = (id) => {
+  //   // Implement delete functionality here
+  //   console.log('Delete request with ID:', id);
+  // };
 
-  const handleApprove = (id) => {
-    // Implement approve functionality here
-    console.log('Approve request with ID:', id);
-  };
+  // const handleApprove = (id) => {
+  //   // Implement approve functionality here
+  //   console.log('Approve request with ID:', id);
+  // };
 
   if (loading) {
     return <div className="text-center mt-10">Loading...</div>;
@@ -52,10 +52,10 @@ const Requests = () => {
               ) : (
                 <p className="text-gray-600 mb-2"><span className="font-semibold">Hospital Details:</span> Not available</p>
               )}
-              <div className="flex justify-end">
+              {/* <div className="flex justify-end">
                 <button onClick={() => handleApprove(request._id)} className="bg-green-500 text-white px-4 py-2 rounded-md mr-2">Approve</button>
                 <button onClick={() => handleDelete(request._id)} className="bg-red-500 text-white px-4 py-2 rounded-md">Delete</button>
-              </div>
+              </div> */}
             </div>
           ))
         ) : (

@@ -71,7 +71,7 @@ const BookAppointment = () => {
     <section className="h-fit flex flex-col w-full items-center justify-center bg-white p-8 shadow-md">
       <div className="rounded w-full max-w-lg">
         <h1 className="text-2xl text-gray-500 font-bold mb-4">Book Appointment</h1>
-        <h2 className="mb-3">Welcome to our donating page!</h2>
+        {/* <h2 className="mb-3">Welcome to our donating page!</h2> */}
         <h2 className="mb-3">Please, fill out the following form</h2>
         <form className="flex flex-col gap-5 p-7 w-full" onSubmit={handleSubmit}>
           {message && <p className="text-center mb-4 text-red-600">{message}</p>}
@@ -79,7 +79,7 @@ const BookAppointment = () => {
             <input
               type="text"
               id="donor"
-              placeholder="Enter Donor Name"
+              placeholder="Enter Your Email"
               value={donor}
               onChange={(e) => setDonor(e.target.value)}
               className="px-3 py-2 rounded-md border w-full border-gray-400"

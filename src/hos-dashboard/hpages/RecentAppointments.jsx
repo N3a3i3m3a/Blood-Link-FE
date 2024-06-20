@@ -43,7 +43,7 @@ const RecentAppointments = () => {
                             <th className="py-2 px-4 border-b">Age</th>
                             <th className="py-2 px-4 border-b">Weight</th>
                             <th className="py-2 px-4 border-b">Created At</th>
-                            <th className="py-2 px-4 border-b">Updated At</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -58,7 +58,7 @@ const RecentAppointments = () => {
                                 <td className="py-2 px-4 border-b">{appointment.donor.age}</td>
                                 <td className="py-2 px-4 border-b">{appointment.donor.weight}</td>
                                 <td className="py-2 px-4 border-b">{new Date(appointment.createdAt).toLocaleString()}</td>
-                                <td className="py-2 px-4 border-b">{new Date(appointment.updatedAt).toLocaleString()}</td>
+                        
                             </tr>
                         ))}
                     </tbody>
