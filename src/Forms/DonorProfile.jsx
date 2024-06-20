@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const DonorProfile = () => {
   const [fullName, setFullName] = useState('');
@@ -13,12 +14,11 @@ const DonorProfile = () => {
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
   const [weight, setWeight] = useState('');
-  const [donationAvailability, setDonationAvailability] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // For displaying errors to the user
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted'); // Log to confirm form submission
+    console.log('Form submitted');
     const donorData = {
       fullName,
       mobileNumber,
@@ -31,15 +31,15 @@ const DonorProfile = () => {
       age,
       gender,
       weight,
-      donationAvailability,
     };
 
-    console.log('Donor Data:', donorData); // Log the data to be sent
+    console.log('Donor Data:', donorData);
 
     try {
       const response = await axios.post('https://blood-link-be.onrender.com/api/donor/create', donorData);
       console.log('Donor created successfully:', response.data);
-      // Optionally, reset the form after successful submission
+
+      // Reset form fields after successful submission
       setFullName('');
       setMobileNumber('');
       setNationalID('');
@@ -51,11 +51,10 @@ const DonorProfile = () => {
       setAge('');
       setGender('');
       setWeight('');
-      setDonationAvailability('');
       setErrorMessage(''); // Clear any previous error messages
     } catch (error) {
       console.error('Error creating donor:', error.response ? error.response.data : error.message);
-      // Detailed logging
+
       if (error.response) {
         console.error('Status:', error.response.status);
         console.error('Data:', error.response.data);
@@ -201,6 +200,7 @@ const DonorProfile = () => {
           <button type="submit" className="ml-[10%] bg-red-600 mx-9 py-2 rounded-md text-white w-full">
             Donate 
           </button>
+          <h1 className='font-semibold'>You need to book appointment?<Link to='/BookAppointment' className='text-red-500'>Click here!</Link></h1>
         </form>
       </div>
     </section>
